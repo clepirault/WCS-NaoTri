@@ -1,0 +1,29 @@
+/* #46DC7B 
+Oswald*/
+
+.footerStyle {
+  margin: 0;
+  padding: 0;
+  background-color: #46dc7b;
+  height: 75px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.footerNav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  color: white;
+  font-weight: normal;
+}
+
