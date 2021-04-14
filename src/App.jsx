@@ -1,9 +1,9 @@
-import SampleComponent from './components/SampleComponent';
+import CollectMap from './components/CollectMap';
 
 function App() {
   return (
     <div className="App">
-      <SampleComponent />
+      <CollectMap />
     </div>
   );
 }
