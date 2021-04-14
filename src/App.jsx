@@ -1,27 +1,23 @@
 import SliderComponent from './components/SliderComponent';
 import logoNaotri from './components/logoNaotri.png';
-import poubelle from './components/poubelle.png';
-import loupe from './components/loupe.png';
+import trash from './components/trash.png';
+import trophy from './components/trophy.png';
 import shopping from './components/shopping.png';
 
 const sliderItems = [
   {
-    title: 'NAOTRI',
     image: logoNaotri,
     description: 'Trie tes déchets de manière ludique!',
   },
   {
-    title: '',
-    image: poubelle,
+    image: trash,
     description: 'Trouve les points de collecte les plus proches de chez toi !',
   },
   {
-    title: '',
-    image: loupe,
+    image: trophy,
     description: 'Relève des défis et gagne des points!',
   },
   {
-    title: '',
     image: shopping,
     description:
       'Echange tes points contre des réductions dans tes enseignes préférées!',
