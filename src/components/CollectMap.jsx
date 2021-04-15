@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './CollectMap.css';
+
+import pïns from '../data/pins';
 
 const profilUser = {
   name: 'Bastien Tacos',
@@ -13,7 +16,9 @@ const profilUser = {
   latLong: [47.207048, -1.5462102],
 };
 
-const position = [47.207049, -1.5462102];
+const userPoint = profilUser.latLong;
+const compostPoint = [47.207049, -1.54];
+const glassPoint = [47.2, -1.5462102];
 
 const dataMaps = {
   tilejson: '2.0.0',
@@ -45,9 +50,36 @@ const CollectMap = () => {
       <h2>Map</h2>
       <MapContainer center={center} zoom={ZOOM_LEVEL}>
         <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
-        <Marker position={position}>
+        <Marker position={userPoint} icon={pïns.bluePin}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            <p>{"I'M BLUE"}!</p>
+            <img
+              className="frog"
+              src="https://www.bluefroggroup.co/wp-content/uploads/2018/11/60184175_s.jpg"
+              alt="blue frog"
+            />
+            <br /> DADADI DADADA !!!
+          </Popup>
+        </Marker>
+        <Marker position={compostPoint} icon={pïns.pinkPin}>
+          <Popup>
+            Can I put a button ? <br />
+            <button type="submit" onClick={() => alert('works')}>
+              Yes !
+            </button>
+          </Popup>
+        </Marker>
+        <Marker className="marker" position={glassPoint} icon={pïns.redPin}>
+          <Popup>
+            Can I put TWO button ? =D
+            <br />
+            <button type="submit" onClick={() => alert('Holy')}>
+              Yes !
+            </button>
+            <br />
+            <button type="submit" onClick={() => alert('HOLY FUCK !')}>
+              Totally !
+            </button>
           </Popup>
         </Marker>
       </MapContainer>
