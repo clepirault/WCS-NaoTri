@@ -71,7 +71,7 @@ const CollectMap = () => {
         </Marker>
         <Marker className="marker" position={glassPoint} icon={pïns.redPin}>
           <Popup>
-            Can I put TWO button ? =D
+            Can I put TWO buttons ? =D
             <br />
             <button type="submit" onClick={() => alert('Holy')}>
               Yes !
