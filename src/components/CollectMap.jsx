@@ -47,30 +47,33 @@ const CollectMap = () => {
   let apiAerialColumn;
   const [column, setColumn] = useState([]);
   const apiCall = () => {
-    axios
-      .get(
-        'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_colonnes-aeriennes-nantes-metropole&q=&facet=type_dechet&facet=commune&facet=pole&refine.commune=Nantes',
-        {
-          params: {
-            apikey: '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
-            rows: 400,
-          },
-        }
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        apiAerialColumn = data.records;
-        setColumn(apiAerialColumn);
-        // eslint-disable-next-line no-console
-        console.log(data);
-      });
+    if (column.length > 0) {
+      setColumn([]);
+    } else {
+      axios
+        .get(
+          'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_colonnes-aeriennes-nantes-metropole&q=&facet=type_dechet&facet=commune&facet=pole&refine.commune=Nantes',
+          {
+            params: {
+              apikey:
+                '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
+              rows: 500,
+            },
+          }
+        )
+        .then((response) => response.data)
+        .then((data) => {
+          apiAerialColumn = data.records;
+          setColumn(apiAerialColumn);
+        });
+    }
   };
 
   return (
     <div>
       <h2>Map</h2>
       <button type="button" onClick={apiCall}>
-        Afficher Colonnes
+        {column.length === 0 ? 'Afficher Colonnes' : 'Masquer Colonnes'}
       </button>
       <MapContainer center={center} zoom={ZOOM_LEVEL}>
         <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
