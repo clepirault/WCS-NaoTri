@@ -1,5 +1,4 @@
 import './slider.css';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 function SliderComponent(props) {
   // eslint-disable-next-line react/prop-types
@@ -8,7 +7,7 @@ function SliderComponent(props) {
     <div className="Slider">
       <img className="image" src={image} alt="logoappli" />
       <p>{description}</p>
-      <div className="arrow-down" />
+      <div id="arrow" className="arrow-down" />
     </div>
   );
 }
