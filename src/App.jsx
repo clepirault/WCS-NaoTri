@@ -10,6 +10,11 @@ import totebag from './components/totebag.png';
 import plasticbag from './components/plasticbag.png';
 import don from './components/don.png';
 import benne from './components/benne.png';
+import './App.css';
+import Footer from './components/Footer';
+import Social from './components/Social';
+import Home from './components/Home';
+import Header from './components/Header';
 
 const sliderItems = [
   {
@@ -58,13 +63,17 @@ const quizQuestions = [
 
 function App() {
   return (
-    <div>
+    <div className="App">
+      <Header />
+      <Home />
       {sliderItems.map((sliderItem) => (
         <SliderComponent {...sliderItem} />
       ))}
       {quizQuestions.map((quizQuestion) => (
         <Quiz {...quizQuestion} />
       ))}
+      <Social />
+      <Footer />
     </div>
   );
 }

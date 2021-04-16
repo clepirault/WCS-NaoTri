@@ -1,0 +1,25 @@
+.socialStyle {
+  margin: 0;
+  padding: 0;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.socialTitle {
+  margin: 0;
+  padding: 0;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.socialIcons img{
+  margin-right: 5px;
+}
+
