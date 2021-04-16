@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './CollectMap.css';
 
-// path to collect point coordinates: data.records[0].fields.geo_shape.coordinates
+import pins from '../data/pins';
 
 const profilUser = {
   name: 'Bastien Tacos',
@@ -16,7 +17,7 @@ const profilUser = {
   latLong: [47.207048, -1.5462102],
 };
 
-const position = [47.207049, -1.5462102];
+const userPoint = profilUser.latLong;
 
 const dataMaps = {
   tilejson: '2.0.0',
@@ -77,9 +78,15 @@ const CollectMap = () => {
       </button>
       <MapContainer center={center} zoom={ZOOM_LEVEL}>
         <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
-        <Marker position={position}>
+        <Marker position={userPoint} icon={pins.bluePin}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            <p>{"I'M BLUE"}!</p>
+            <img
+              className="frog"
+              src="https://www.bluefroggroup.co/wp-content/uploads/2018/11/60184175_s.jpg"
+              alt="blue frog"
+            />
+            <br /> DADADI DADADA !!!
           </Popup>
         </Marker>
         {column.map((eachColumn) => (
