@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-curly-brace-presence */
@@ -86,14 +87,14 @@ const CollectMap = () => {
     );
   };
 
-  const [verre, setVerre] = useState(true);
+  /* const [verre, setVerre] = useState(true);
   const showVerre = () => {
     setVerre(
       column.filter(
         (eachColumn) => !verre || eachColumn.fields.type_dechet === 'Verre'
       )
     );
-  };
+  }; */
 
   return (
     <div>
@@ -101,9 +102,9 @@ const CollectMap = () => {
       <button type="button" onClick={apiCall}>
         Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
       </button>
-      <button type="button" onClick={showVerre}>
+      {/* <button type="button" onClick={showVerre}>
         Verres: {column.length === 0 ? 'ON' : 'OFF'}
-      </button>
+  </button> */}
       <MapContainer center={center} zoom={ZOOM_LEVEL}>
         <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
         <Marker position={userPoint} icon={pins.bluePin}>
