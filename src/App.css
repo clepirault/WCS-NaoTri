@@ -2,3 +2,9 @@
   height: 600px;
   width: 100%;
 }
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
