@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-curly-brace-presence */
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -53,7 +55,7 @@ const CollectMap = () => {
     } else {
       axios
         .get(
-          'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_colonnes-aeriennes-nantes-metropole&q=&facet=type_dechet&facet=commune&facet=pole&refine.commune=Nantes',
+          'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_colonnes-aeriennes-nantes-metropole&q=&facet=type_dechet&facet=commune&facet=pole',
           {
             params: {
               apikey:
@@ -65,27 +67,49 @@ const CollectMap = () => {
         .then((response) => response.data)
         .then((data) => {
           apiAerialColumn = data.records;
-          setColumn(apiAerialColumn);
+          setColumn(
+            apiAerialColumn.filter(
+              (eachColumn) =>
+                eachColumn.fields.commune === 'Nantes' ||
+                eachColumn.fields.commune === 'Rezé' ||
+                eachColumn.fields.commune === 'Saint-Sébastien-sur-Loire' ||
+                eachColumn.fields.commune === 'Bouguenais'
+            )
+          );
         });
     }
+  };
+
+  const showInMapClicked = (lat, lon) => {
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&origin=${profilUser.latitude},${profilUser.longitude}&destination=${lat},${lon}`
+    );
+  };
+
+  const [verre, setVerre] = useState(true);
+  const showVerre = () => {
+    setVerre(
+      column.filter(
+        (eachColumn) => !verre || eachColumn.fields.type_dechet === 'Verre'
+      )
+    );
   };
 
   return (
     <div>
       <h2>Map</h2>
       <button type="button" onClick={apiCall}>
-        {column.length === 0 ? 'Afficher Colonnes' : 'Masquer Colonnes'}
+        Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
+      </button>
+      <button type="button" onClick={showVerre}>
+        Verres: {column.length === 0 ? 'ON' : 'OFF'}
       </button>
       <MapContainer center={center} zoom={ZOOM_LEVEL}>
         <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
         <Marker position={userPoint} icon={pins.bluePin}>
           <Popup>
-            <p>{"I'M BLUE"}!</p>
-            <img
-              className="frog"
-              src="https://www.bluefroggroup.co/wp-content/uploads/2018/11/60184175_s.jpg"
-              alt="blue frog"
-            />
+            <p>{profilUser.name}</p>
+            <img className="frog" src={profilUser.avatar} alt="blue frog" />
             <br /> DADADI DADADA !!!
           </Popup>
         </Marker>
@@ -96,11 +120,48 @@ const CollectMap = () => {
               eachColumn.fields.geo_shape.coordinates[1],
               eachColumn.fields.geo_shape.coordinates[0],
             ]}
-          />
+            icon={(() => {
+              switch (eachColumn.fields.type_dechet) {
+                case 'Verre':
+                  return pins.greenPin;
+                case 'Trisac':
+                  return pins.yellowPin;
+                case 'Papier-carton':
+                  return pins.orangePin;
+                case 'Ordure ménagère':
+                  return pins.redPin;
+                default:
+                  return pins.pinkPin;
+              }
+            })()}
+          >
+            <Popup>
+              <h3>{eachColumn.fields.type_dechet}</h3>
+              <p>
+                {eachColumn.fields.adresse}
+                <br />
+                {eachColumn.fields.commune}
+              </p>
+              <button
+                type="button"
+                onClick={() =>
+                  showInMapClicked(
+                    eachColumn.fields.geo_shape.coordinates[1],
+                    eachColumn.fields.geo_shape.coordinates[0]
+                  )
+                }
+              >
+                Y aller
+              </button>
+              <button type="button">Déposer</button>
+            </Popup>
+          </Marker>
         ))}
       </MapContainer>
     </div>
   );
 };
+
+// eachColumn.fields.type_dechet
 
 export default CollectMap;
