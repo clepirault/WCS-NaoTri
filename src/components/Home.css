@@ -6,13 +6,23 @@
   /* background-color: #e4dfdf; */
 }
 
-h1 {
-  padding: 10px;
+
+
+h1{
+  font-size: 16px;
+  
+}
+.menu-collecte, .menu-enseignes, .menu-espace, .menu-defi, .a-propos {
+  padding: 5px;
+  margin-bottom: 15px;
+  padding-right: 40px;
+  padding-left: 40px;
   background-color: #8ed1a5;
   border-radius: 40px;
-  border: solid grey;
-  color: rgb(99, 77, 77);
+  border: solid 1px lightgrey;
+  color: rgb(139, 122, 122);
   width: 70%;
-  text-align: center;
-  box-shadow: 5px 5px 5px grey;
+  box-shadow: 2px 2px 2px grey;
+  display: flex;
+  justify-content: space-between;
 }
