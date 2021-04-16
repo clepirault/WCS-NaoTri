@@ -1,0 +1,43 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  display: flex;
+}
+
+.Slider {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #46dc7b;
+  padding: 60px 35px;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Lucida Grande bold';
+  font-size: 60px;
+}
+
+p {
+  font-size: 'Lucida Grande';
+  font-size: 20px;
+}
+
+.image {
+  padding-bottom: 15px;
+  border-radius: 30%;
+  height: 200px;
+  width: 200px;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-right: 16px solid transparent;
+  border-left: 16px solid transparent;
+  border-top: 20px solid #209934;
+}
