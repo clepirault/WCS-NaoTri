@@ -33,7 +33,6 @@ const sliderItems = [
 
 const quizQuestions = [
   {
-    image1: logoNaotri,
     question: 'Quand tu as soif tu...',
     image2: bottle,
     answer1: "...cours acheter une bouteille d'eau en plastique",
@@ -41,7 +40,6 @@ const quizQuestions = [
     answer2: '...prends ta gourde et la remplis au robinet ?',
   },
   {
-    image1: logoNaotri,
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
@@ -49,13 +47,12 @@ const quizQuestions = [
     answer2: '...achètes un sac plastique à chaque fois ?',
   },
   {
-    image1: logoNaotri,
     question: 'Quand tes vêtements ne sont plus à ton goût tu...',
     image2: benne,
     answer1: '...les jettes, bon débarras !',
     image3: don,
     answer2:
-      '...les donnes déposes à une benne de recyclage ou les donnes à une association ?',
+      '...les déposes à une benne de recyclage ou les donnes à une association ?',
   },
 ];
 

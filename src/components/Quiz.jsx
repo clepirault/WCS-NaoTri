@@ -1,24 +1,30 @@
+import './quiz.css';
+
 function Quiz(props) {
   // eslint-disable-next-line react/prop-types
-  const { image1, question, image2, answer1, image3, answer2 } = props;
+  const { question, image2, answer1, image3, answer2 } = props;
   return (
     <div className="quiz-container">
       <div className="question">
-        <img src={image1} alt="logo" />
         <p>{question}</p>
       </div>
-      <div className="first-answer">
-        <img src={image2} alt="image2" />
-        <p>{answer1}</p>
-        <input type="checkbox" />
-      </div>
-      <div className="second-answer">
-        <img src={image3} alt="image3" />
-        <p>{answer2}</p>
-        <input type="checkbox" />
-      </div>
-      <div className="next-btn">
-        <input type="button" />
+      <div className="answers">
+        <div>
+          <img src={image2} alt="image2" />
+          <label htmlFor="answer1">{answer1}</label>
+          <input
+            type="radio"
+            name="thirst"
+            value="plastic-bottle"
+            id="answer1"
+          />
+        </div>
+        <div>
+          <img src={image3} alt="image3" />
+          <label htmlFor="answer2">{answer2}</label>
+          <input type="radio" name="thirst" value="flask" id="answer2" />
+        </div>
+        <input type="submit" value="Continuer" />
       </div>
     </div>
   );
