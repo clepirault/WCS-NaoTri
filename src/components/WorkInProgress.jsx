@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import barricade from '../images/barricade.png';
+import barricade from '../images/barrier.png';
 
 const WorkInProgress = () => {
   return (
