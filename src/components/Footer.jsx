@@ -32,16 +32,3 @@ function Footer() {
 }
 
 export default Footer;
-
-/* footer avant router
-<div className="footerStyle">
-      <div className="footerNav">
-        <img src={homeIcon} alt="Home Icon" />
-        <img src={ideaIcon} alt="Idea Icon" />
-        <img src={locationIcon} alt="Location Icon" />
-        <img src={shopIcon} alt="Shops Icon" />
-        <img src={userIcon} alt="User Icon" />
-      </div>
-      <h6 className="copyright">Copyright WCS</h6>
-  </div>
-  */
