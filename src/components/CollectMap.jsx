@@ -1,7 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable react/jsx-curly-brace-presence */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
