@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-// eslint-disable-next-line import/no-unresolved
 import barricade from '../images/barricade.png';
 
 const WorkInProgress = () => {
