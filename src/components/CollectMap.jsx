@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
 
 import pins from '../data/pins';
@@ -110,55 +112,58 @@ const CollectMap = () => {
             <br /> DADADI DADADA !!!
           </Popup>
         </Marker>
-        {column.map((eachColumn) => (
-          <Marker
-            key={eachColumn.fields.id_colonne}
-            position={[
-              eachColumn.fields.geo_shape.coordinates[1],
-              eachColumn.fields.geo_shape.coordinates[0],
-            ]}
-            icon={(() => {
-              switch (eachColumn.fields.type_dechet) {
-                case 'Verre':
-                  return pins.greenPin;
-                case 'Trisac':
-                  return pins.yellowPin;
-                case 'Papier-carton':
-                  return pins.orangePin;
-                case 'Ordure ménagère':
-                  return pins.redPin;
-                default:
-                  return pins.pinkPin;
-              }
-            })()}
-          >
-            <Popup>
-              <h3>{eachColumn.fields.type_dechet}</h3>
-              <p>
-                {eachColumn.fields.adresse}
-                <br />
-                {eachColumn.fields.commune}
-              </p>
-              <button
-                type="button"
-                onClick={() =>
-                  showInMapClicked(
-                    eachColumn.fields.geo_shape.coordinates[1],
-                    eachColumn.fields.geo_shape.coordinates[0]
-                  )
+        <MarkerClusterGroup
+          showCoverageOnHover={false}
+          spiderfyDistanceMultiplier={8}
+        >
+          {column.map((eachColumn) => (
+            <Marker
+              key={eachColumn.fields.id_colonne}
+              position={[
+                eachColumn.fields.geo_shape.coordinates[1],
+                eachColumn.fields.geo_shape.coordinates[0],
+              ]}
+              icon={(() => {
+                switch (eachColumn.fields.type_dechet) {
+                  case 'Verre':
+                    return pins.verrePin;
+                  case 'Trisac':
+                    return pins.trisacPin;
+                  case 'Papier-carton':
+                    return pins.cartonPin;
+                  case 'Ordure ménagère':
+                    return pins.orduresPin;
+                  default:
+                    return pins.pinkPin;
                 }
-              >
-                Y aller
-              </button>
-              <button type="button">Déposer</button>
-            </Popup>
-          </Marker>
-        ))}
+              })()}
+            >
+              <Popup>
+                <h3>{eachColumn.fields.type_dechet}</h3>
+                <p>
+                  {eachColumn.fields.adresse}
+                  <br />
+                  {eachColumn.fields.commune}
+                </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    showInMapClicked(
+                      eachColumn.fields.geo_shape.coordinates[1],
+                      eachColumn.fields.geo_shape.coordinates[0]
+                    )
+                  }
+                >
+                  Y aller
+                </button>
+                <button type="button">Déposer</button>
+              </Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
     </div>
   );
 };
-
-// eachColumn.fields.type_dechet
 
 export default CollectMap;
