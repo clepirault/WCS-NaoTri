@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
 
 import pins from '../data/pins';
@@ -16,7 +18,7 @@ const profilUser = {
   latLong: [47.207048, -1.5462102],
 };
 
-const userPoint = profilUser.latLong;
+// const userPoint = profilUser.latLong;
 
 const dataMaps = {
   tilejson: '2.0.0',
@@ -38,10 +40,29 @@ const dataMaps = {
 const CollectMap = () => {
   // eslint-disable-next-line no-unused-vars
   const [center, setCenter] = useState({
+    loaded: false,
     lat: profilUser.latitude,
     lng: profilUser.longitude,
   });
   const ZOOM_LEVEL = 14;
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCenter({
+            loaded: true,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        function b(error) {
+          console.error(`error ${error.code} ${error.message}`);
+        }
+      );
+    }
+    console.log(`error`);
+  }, []);
 
   // API
   let apiAerialColumn;
@@ -104,7 +125,7 @@ const CollectMap = () => {
 
   const showInMapClicked = (lat, lon) => {
     window.open(
-      `https://www.google.com/maps/dir/?api=1&origin=${profilUser.latitude},${profilUser.longitude}&destination=${lat},${lon}`
+      `https://www.google.com/maps/dir/?api=1&origin=${center.latitude},${center.longitude}&destination=${lat},${lon}`
     );
   };
 
@@ -122,95 +143,114 @@ const CollectMap = () => {
       {/* <button type="button" onClick={apiCall}>
             Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
           </button> */}
-      <MapContainer center={center} zoom={ZOOM_LEVEL}>
-        <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
-        <Marker position={userPoint} icon={pins.bluePin}>
-          <Popup>
-            <p>{profilUser.name}</p>
-            <img className="frog" src={profilUser.avatar} alt="blue frog" />
-            <br /> DADADI DADADA !!!
-          </Popup>
-        </Marker>
-        {column.map((eachColumn) => (
-          <Marker
-            key={eachColumn.fields.id_colonne}
-            position={[
-              eachColumn.fields.geo_shape.coordinates[1],
-              eachColumn.fields.geo_shape.coordinates[0],
-            ]}
-            icon={(() => {
-              switch (eachColumn.fields.type_dechet) {
-                case 'Verre':
-                  return pins.greenPin;
-                case 'Trisac':
-                  return pins.yellowPin;
-                case 'Papier-carton':
-                  return pins.orangePin;
-                case 'Ordure ménagère':
-                  return pins.redPin;
-                default:
-                  return pins.pinkPin;
-              }
-            })()}
-          >
+      {center.loaded
+        ? `lat : ${center.lat} + lng : ${center.lng}`
+        : 'Location data not available yet'}
+      <button type="button" onClick={apiCall}>
+        Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
+      </button>
+      {/* <button type="button" onClick={showVerre}>
+        Verres: {column.length === 0 ? 'ON' : 'OFF'}
+  </button> */}
+      {center.loaded ? (
+        <MapContainer center={center} zoom={ZOOM_LEVEL}>
+          <TileLayer
+            url={dataMaps.tiles[0]}
+            attribution={dataMaps.attribution}
+          />
+          <Marker position={center} icon={pins.bluePin}>
             <Popup>
-              <h3>{eachColumn.fields.type_dechet}</h3>
-              <p>
-                {eachColumn.fields.adresse}
-                <br />
-                {eachColumn.fields.commune}
-              </p>
-              <button
-                type="button"
-                onClick={() =>
-                  showInMapClicked(
-                    eachColumn.fields.geo_shape.coordinates[1],
-                    eachColumn.fields.geo_shape.coordinates[0]
-                  )
-                }
-              >
-                Y aller
-              </button>
-              <button type="button">Déposer</button>
+              <p>{profilUser.name}</p>
+              <img className="frog" src={profilUser.avatar} alt="blue frog" />
+              <br /> DADADI DADADA !!!
             </Popup>
           </Marker>
-        ))}
-        {compost.map((eachCompost) => (
-          <Marker
-            key={eachCompost.recordid}
-            position={[
-              eachCompost.geometry.coordinates[1],
-              eachCompost.geometry.coordinates[0],
-            ]}
-            icon={pins.purplePin}
+          <MarkerClusterGroup
+            showCoverageOnHover={false}
+            spiderfyDistanceMultiplier={8}
           >
-            <Popup>
-              <h3>Compost, {eachCompost.fields.nom}</h3>
-              <p>
-                {eachCompost.fields.adresse}
-                <br />
-                {eachCompost.fields.lieu}
-              </p>
-              <button
-                type="button"
-                onClick={() =>
-                  showInMapClicked(
-                    eachCompost.geometry.coordinates[1],
-                    eachCompost.geometry.coordinates[0]
-                  )
-                }
+            {column.map((eachColumn) => (
+              <Marker
+                key={eachColumn.fields.id_colonne}
+                position={[
+                  eachColumn.fields.geo_shape.coordinates[1],
+                  eachColumn.fields.geo_shape.coordinates[0],
+                ]}
+                icon={(() => {
+                  switch (eachColumn.fields.type_dechet) {
+                    case 'Verre':
+                      return pins.verrePin;
+                    case 'Trisac':
+                      return pins.trisacPin;
+                    case 'Papier-carton':
+                      return pins.cartonPin;
+                    case 'Ordure ménagère':
+                      return pins.orduresPin;
+                    default:
+                      return pins.pinkPin;
+                  }
+                })()}
               >
-                Y aller
-              </button>
-              <button type="button">Déposer</button>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+                <Popup>
+                  <h3>{eachColumn.fields.type_dechet}</h3>
+                  <p>
+                    {eachColumn.fields.adresse}
+                    <br />
+                    {eachColumn.fields.commune}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      showInMapClicked(
+                        eachColumn.fields.geo_shape.coordinates[1],
+                        eachColumn.fields.geo_shape.coordinates[0]
+                      )
+                    }
+                  >
+                    Y aller
+                  </button>
+                  <button type="button">Déposer</button>
+                </Popup>
+              </Marker>
+            ))}
+            {compost.map((eachCompost) => (
+              <Marker
+                key={eachCompost.recordid}
+                position={[
+                  eachCompost.geometry.coordinates[1],
+                  eachCompost.geometry.coordinates[0],
+                ]}
+                icon={pins.purplePin}
+              >
+                <Popup>
+                  <h3>Compost, {eachCompost.fields.nom}</h3>
+                  <p>
+                    {eachCompost.fields.adresse}
+                    <br />
+                    {eachCompost.fields.lieu}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      showInMapClicked(
+                        eachCompost.geometry.coordinates[1],
+                        eachCompost.geometry.coordinates[0]
+                      )
+                    }
+                  >
+                    Y aller
+                  </button>
+                  <button type="button">Déposer</button>
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
+        </MapContainer>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
-
-// eachColumn.fields.type_dechet
 
 export default CollectMap;
