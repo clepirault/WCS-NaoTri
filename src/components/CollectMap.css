@@ -1,0 +1,9 @@
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+}
+
+.frog {
+  width: 120px;
+  height: 120px;
+}
