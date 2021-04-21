@@ -1,5 +1,7 @@
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
 import SliderComponent from './components/SliderComponent';
+
 import Quiz from './components/Quiz';
 import logoNaotri from './components/logoNaotri.png';
 import trash from './components/trash.png';
@@ -16,6 +18,7 @@ import Footer from './components/Footer';
 import Social from './components/Social';
 import Home from './components/Home';
 import Header from './components/Header';
+import WorkInProgress from './components/WorkInProgress';
 
 const sliderItems = [
   {
@@ -39,6 +42,8 @@ const sliderItems = [
 
 const quizQuestions = [
   {
+    key: 0,
+    id: 0,
     question: 'Quand tu as soif tu...',
     image2: bottle,
     answer1: "...cours acheter une bouteille d'eau en plastique",
@@ -46,6 +51,8 @@ const quizQuestions = [
     answer2: '...prends ta gourde et la remplis au robinet ?',
   },
   {
+    key: 1,
+    id: 1,
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
@@ -53,6 +60,8 @@ const quizQuestions = [
     answer2: '...achètes un sac plastique à chaque fois ?',
   },
   {
+    key: 2,
+    id: 2,
     question: 'Quand tes vêtements ne sont plus à ton goût tu...',
     image2: benne,
     answer1: '...les jettes, bon débarras !',
@@ -65,17 +74,61 @@ const quizQuestions = [
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Home />
-      {sliderItems.map((sliderItem) => (
-        <SliderComponent {...sliderItem} />
-      ))}
-      {quizQuestions.map((quizQuestion) => (
-        <Quiz {...quizQuestion} />
-      ))}
-      <Social />
-      <CollectMap />
-      <Footer />
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/slider">
+              {sliderItems.map((sliderItem) => (
+                <SliderComponent {...sliderItem} />
+              ))}
+              <Link to="/quiz0">
+                <button type="button">Quiz1</button>
+              </Link>
+            </Route>
+            <Route exact path="/quiz0">
+              <Quiz {...quizQuestions[0]} />
+            </Route>
+            <Route exact path="/quiz1">
+              <Quiz {...quizQuestions[1]} />
+            </Route>
+            <Route exact path="/quiz2">
+              <Quiz {...quizQuestions[2]} />
+            </Route>
+            <Route exact path="/quizResult">
+              <WorkInProgress />
+            </Route>
+            <Route exact path="/login">
+              <WorkInProgress />
+            </Route>
+            <Route exact path="/home">
+              <Header />
+              <Home />
+              <Social />
+            </Route>
+            <Route exact path="/map">
+              <CollectMap />
+            </Route>
+            <Route exact path="/shop">
+              <WorkInProgress />
+            </Route>
+            <Route exact path="/profile">
+              <WorkInProgress />
+            </Route>
+            <Route exact path="/challenge">
+              <WorkInProgress />
+            </Route>
+            <Route exact path="/tips">
+              <WorkInProgress />
+            </Route>
+            <Route exact path="/about">
+              <WorkInProgress />
+            </Route>
+          </Switch>
+        </div>
+        <nav>
+          <Footer />
+        </nav>
+      </Router>
     </div>
   );
 }

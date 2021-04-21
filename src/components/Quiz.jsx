@@ -1,8 +1,15 @@
+import { Link } from 'react-router-dom';
 import './quiz.css';
 
 function Quiz(props) {
   // eslint-disable-next-line react/prop-types
-  const { question, image2, answer1, image3, answer2 } = props;
+  const { id, question, image2, answer1, image3, answer2 } = props;
+  let newPath = '';
+  if (id < 2) {
+    newPath = `/quiz${id + 1}`;
+  } else {
+    newPath = `/quizResult`;
+  }
   return (
     <div className="quiz-container">
       <div className="question">
@@ -24,7 +31,9 @@ function Quiz(props) {
           <label htmlFor="answer2">{answer2}</label>
           <input type="radio" name="thirst" value="flask" id="answer2" />
         </div>
-        <input type="submit" value="Continuer" />
+        <Link to={newPath}>
+          <button type="button">Continuer</button>
+        </Link>
       </div>
     </div>
   );
