@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -45,11 +45,15 @@ const CollectMap = () => {
 
   // API
   let apiAerialColumn;
+  let apiCompost;
   const [column, setColumn] = useState([]);
+  const [compost, setCompost] = useState([]);
   const apiCall = () => {
     if (column.length > 0) {
       setColumn([]);
+      setCompost([]);
     } else {
+      // API COLLONNES AERIENNES
       axios
         .get(
           'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_colonnes-aeriennes-nantes-metropole&q=&facet=type_dechet&facet=commune&facet=pole',
@@ -74,8 +78,29 @@ const CollectMap = () => {
             )
           );
         });
+      // API COMPOST
+      axios
+        .get(
+          'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=512042839_composteurs-quartier-nantes-metropole&q=&facet=categorie&facet=lieu&facet=annee',
+          {
+            params: {
+              apikey:
+                '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
+              rows: 500,
+            },
+          }
+        )
+        .then((response) => response.data)
+        .then((data) => {
+          apiCompost = data.records;
+          setCompost(apiCompost);
+        });
     }
   };
+
+  useEffect(() => {
+    apiCall();
+  }, []);
 
   const showInMapClicked = (lat, lon) => {
     window.open(
@@ -94,13 +119,9 @@ const CollectMap = () => {
 
   return (
     <div>
-      <h2>Map</h2>
-      <button type="button" onClick={apiCall}>
-        Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
-      </button>
-      {/* <button type="button" onClick={showVerre}>
-        Verres: {column.length === 0 ? 'ON' : 'OFF'}
-  </button> */}
+      {/* <button type="button" onClick={apiCall}>
+            Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
+          </button> */}
       <MapContainer center={center} zoom={ZOOM_LEVEL}>
         <TileLayer url={dataMaps.tiles[0]} attribution={dataMaps.attribution} />
         <Marker position={userPoint} icon={pins.bluePin}>
@@ -145,6 +166,37 @@ const CollectMap = () => {
                   showInMapClicked(
                     eachColumn.fields.geo_shape.coordinates[1],
                     eachColumn.fields.geo_shape.coordinates[0]
+                  )
+                }
+              >
+                Y aller
+              </button>
+              <button type="button">Déposer</button>
+            </Popup>
+          </Marker>
+        ))}
+        {compost.map((eachCompost) => (
+          <Marker
+            key={eachCompost.recordid}
+            position={[
+              eachCompost.geometry.coordinates[1],
+              eachCompost.geometry.coordinates[0],
+            ]}
+            icon={pins.purplePin}
+          >
+            <Popup>
+              <h3>Compost, {eachCompost.fields.nom}</h3>
+              <p>
+                {eachCompost.fields.adresse}
+                <br />
+                {eachCompost.fields.lieu}
+              </p>
+              <button
+                type="button"
+                onClick={() =>
+                  showInMapClicked(
+                    eachCompost.geometry.coordinates[1],
+                    eachCompost.geometry.coordinates[0]
                   )
                 }
               >
