@@ -57,22 +57,25 @@ const CollectMap = () => {
           });
         },
         function b(error) {
+          // eslint-disable-next-line no-console
           console.error(`error ${error.code} ${error.message}`);
         }
       );
     }
-    console.log(`error`);
   }, []);
 
   // API
   let apiAerialColumn;
   let apiCompost;
+  let apiDechette;
   const [column, setColumn] = useState([]);
   const [compost, setCompost] = useState([]);
+  const [dechette, setDechette] = useState([]);
   const apiCall = () => {
     if (column.length > 0) {
       setColumn([]);
       setCompost([]);
+      setDechette([]);
     } else {
       // API COLLONNES AERIENNES
       axios
@@ -114,7 +117,31 @@ const CollectMap = () => {
         .then((response) => response.data)
         .then((data) => {
           apiCompost = data.records;
-          setCompost(apiCompost);
+          const filtered = apiCompost.filter((el) => {
+            if (!apiCompost[el.fields.id]) {
+              apiCompost[el.fields.id] = true;
+              return true;
+            }
+            return false;
+          }, Object.create(null));
+          setCompost(filtered);
+        });
+      // API DECHETERIE
+      axios
+        .get(
+          'https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_decheteries-ecopoints-nantes-metropole&q=&facet=libtype&facet=commune&facet=batteries&facet=bois&facet=carton&facet=gravats&facet=deee&facet=encombrants_menagers&facet=ferrailles&facet=huiles_moteur&facet=papiers_journaux_livres&facet=plastiques_menagers&facet=pneus&facet=textiles&facet=dechets_verts&facet=verre&facet=piles&facet=mobilier&facet=cartouches&facet=extincteur&facet=neons_lampes&facet=dechets_dangereux&facet=bouteilles_gaz',
+          {
+            params: {
+              apikey:
+                '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
+              rows: 50,
+            },
+          }
+        )
+        .then((response) => response.data)
+        .then((data) => {
+          apiDechette = data.records;
+          setDechette(apiDechette);
         });
     }
   };
@@ -140,18 +167,6 @@ const CollectMap = () => {
 
   return (
     <div>
-      {/* <button type="button" onClick={apiCall}>
-            Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
-          </button> */}
-      {center.loaded
-        ? `lat : ${center.lat} + lng : ${center.lng}`
-        : 'Location data not available yet'}
-      <button type="button" onClick={apiCall}>
-        Colonnes: {column.length === 0 ? 'ON' : 'OFF'}
-      </button>
-      {/* <button type="button" onClick={showVerre}>
-        Verres: {column.length === 0 ? 'ON' : 'OFF'}
-  </button> */}
       {center.loaded ? (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
           <TileLayer
@@ -167,7 +182,7 @@ const CollectMap = () => {
           </Marker>
           <MarkerClusterGroup
             showCoverageOnHover={false}
-            spiderfyDistanceMultiplier={8}
+            spiderfyDistanceMultiplier={1}
           >
             {column.map((eachColumn) => (
               <Marker
@@ -193,7 +208,7 @@ const CollectMap = () => {
               >
                 <Popup>
                   <h3>{eachColumn.fields.type_dechet}</h3>
-                  <p>
+                  <p className="pParagraphe">
                     {eachColumn.fields.adresse}
                     <br />
                     {eachColumn.fields.commune}
@@ -220,11 +235,11 @@ const CollectMap = () => {
                   eachCompost.geometry.coordinates[1],
                   eachCompost.geometry.coordinates[0],
                 ]}
-                icon={pins.purplePin}
+                icon={pins.compostPin}
               >
                 <Popup>
                   <h3>Compost, {eachCompost.fields.nom}</h3>
-                  <p>
+                  <p className="pParagraphe">
                     {eachCompost.fields.adresse}
                     <br />
                     {eachCompost.fields.lieu}
@@ -235,6 +250,37 @@ const CollectMap = () => {
                       showInMapClicked(
                         eachCompost.geometry.coordinates[1],
                         eachCompost.geometry.coordinates[0]
+                      )
+                    }
+                  >
+                    Y aller
+                  </button>
+                  <button type="button">Déposer</button>
+                </Popup>
+              </Marker>
+            ))}
+            {dechette.map((eachDechette) => (
+              <Marker
+                key={eachDechette.recordid}
+                position={[
+                  eachDechette.fields.location[0],
+                  eachDechette.fields.location[1],
+                ]}
+                icon={pins.dechettePin}
+              >
+                <Popup>
+                  <h3>{eachDechette.fields.nom_complet}</h3>
+                  <p className="pParagraphe">
+                    {eachDechette.fields.adresse}
+                    <br />
+                    {eachDechette.fields.commune}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      showInMapClicked(
+                        eachDechette.fields.location[0],
+                        eachDechette.fields.location[1]
                       )
                     }
                   >
