@@ -169,6 +169,9 @@ const CollectMap = () => {
     <div>
       {center.loaded ? (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
+          <button type="button" className="buttonFilter">
+            Filter
+          </button>
           <TileLayer
             url={dataMaps.tiles[0]}
             attribution={dataMaps.attribution}

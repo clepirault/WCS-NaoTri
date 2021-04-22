@@ -11,3 +11,7 @@
 .pParagraphe{
   font-size: 12px;
 }
+
+.buttonFilter {
+  z-index: 10000;
+}
