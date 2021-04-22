@@ -18,8 +18,6 @@ const profilUser = {
   latLong: [47.207048, -1.5462102],
 };
 
-// const userPoint = profilUser.latLong;
-
 const dataMaps = {
   tilejson: '2.0.0',
   name: 'Streets',
