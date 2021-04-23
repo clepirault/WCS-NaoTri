@@ -19,6 +19,7 @@ import Social from './components/Social';
 import Home from './components/Home';
 import Header from './components/Header';
 import WorkInProgress from './components/WorkInProgress';
+import QuizResult from './components/QuizResult';
 
 const sliderItems = [
   {
@@ -48,10 +49,10 @@ const quizQuestions = [
     question: 'Quand tu as soif tu...',
     image3: bottle,
     answer1: '...prends ta gourde et la remplis au robinet ?',
-    value2: 0,
+    value2: '0',
     image2: robinet,
     answer2: "...cours acheter une bouteille d'eau en plastique",
-    value1: 1,
+    value1: '1',
   },
   {
     key: 1,
@@ -60,10 +61,10 @@ const quizQuestions = [
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
-    value1: 1,
+    value1: '1',
     image3: plasticbag,
     answer2: '...achètes un sac plastique à chaque fois ?',
-    value2: 0,
+    value2: '0',
   },
   {
     key: 2,
@@ -72,11 +73,11 @@ const quizQuestions = [
     question: 'Quand tes vêtements ne sont plus à ton goût tu...',
     image3: benne,
     answer2: '...les jettes, bon débarras !',
-    value2: 0,
+    value2: '0',
     image2: don,
     answer1:
       '...les déposes à une benne de recyclage ou les donnes à une association ?',
-    value1: 1,
+    value1: '1',
   },
 ];
 
@@ -104,7 +105,7 @@ function App() {
               <Quiz {...quizQuestions[2]} />
             </Route>
             <Route exact path="/quizResult">
-              <WorkInProgress />
+              <QuizResult />
             </Route>
             <Route exact path="/login">
               <WorkInProgress />
