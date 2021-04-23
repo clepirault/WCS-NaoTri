@@ -20,6 +20,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import WorkInProgress from './components/WorkInProgress';
 import TemporaryLinks from './components/TemporaryLinks';
+import ProfileCreation from './components/ProfileCreation';
 
 const sliderItems = [
   {
@@ -113,7 +114,7 @@ function App() {
               <WorkInProgress />
             </Route>
             <Route exact path="/profile">
-              <WorkInProgress />
+              <ProfileCreation />
             </Route>
             <Route exact path="/challenge">
               <WorkInProgress />
