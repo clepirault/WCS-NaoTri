@@ -1,15 +1,30 @@
+/* eslint-disable react/prop-types */
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './quiz.css';
+import localStorage from 'localStorage';
 
 function Quiz(props) {
-  // eslint-disable-next-line react/prop-types
-  const { id, question, image2, answer1, image3, answer2 } = props;
+  const {
+    id,
+    name,
+    question,
+    image2,
+    answer1,
+    value1,
+    image3,
+    answer2,
+    value2,
+  } = props;
   let newPath = '';
   if (id < 2) {
     newPath = `/quiz${id + 1}`;
   } else {
     newPath = `/quizResult`;
   }
+  const handleClic = (e) => {
+    localStorage.setItem(e.target.name, e.target.value);
+  };
   return (
     <div className="quiz-container">
       <div className="question">
@@ -21,15 +36,22 @@ function Quiz(props) {
           <label htmlFor="answer1">{answer1}</label>
           <input
             type="radio"
-            name="thirst"
-            value="plastic-bottle"
+            name={name}
+            value={value1}
             id="answer1"
+            onClick={handleClic}
           />
         </div>
         <div>
           <img src={image3} alt="image3" />
           <label htmlFor="answer2">{answer2}</label>
-          <input type="radio" name="thirst" value="flask" id="answer2" />
+          <input
+            type="radio"
+            name={name}
+            value={value2}
+            id="answer2"
+            onClick={handleClic}
+          />
         </div>
         <Link to={newPath}>
           <button type="button">Continuer</button>
