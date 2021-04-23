@@ -1,7 +1,6 @@
 import './quiz.css';
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import localStorage from 'localStorage';
 
 function QuizResult() {
   const score1 = localStorage.getItem('Question1') || '0';

@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './quiz.css';
-import localStorage from 'localStorage';
 
 function Quiz(props) {
   const {
