@@ -19,6 +19,7 @@ import Social from './components/Social';
 import Home from './components/Home';
 import Header from './components/Header';
 import WorkInProgress from './components/WorkInProgress';
+import TemporaryLinks from './components/TemporaryLinks';
 
 const sliderItems = [
   {
@@ -118,7 +119,7 @@ function App() {
               <WorkInProgress />
             </Route>
             <Route exact path="/tips">
-              <WorkInProgress />
+              <TemporaryLinks />
             </Route>
             <Route exact path="/about">
               <WorkInProgress />
