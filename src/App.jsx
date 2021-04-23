@@ -20,6 +20,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import WorkInProgress from './components/WorkInProgress';
 import QuizResult from './components/QuizResult';
+import TemporaryLinks from './components/TemporaryLinks';
 
 const sliderItems = [
   {
@@ -128,7 +129,7 @@ function App() {
               <WorkInProgress />
             </Route>
             <Route exact path="/tips">
-              <WorkInProgress />
+              <TemporaryLinks />
             </Route>
             <Route exact path="/about">
               <WorkInProgress />

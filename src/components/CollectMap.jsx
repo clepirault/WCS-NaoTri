@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
 
+import filterLogo from './filterlogo.png';
 import pins from '../data/pins';
 
 const profilUser = {
@@ -36,7 +37,6 @@ const dataMaps = {
 };
 
 const CollectMap = () => {
-  // eslint-disable-next-line no-unused-vars
   const [center, setCenter] = useState({
     loaded: false,
     lat: profilUser.latitude,
@@ -44,9 +44,16 @@ const CollectMap = () => {
   });
   const ZOOM_LEVEL = 14;
 
+  // GEOLOCALISATION
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 30000,
+    maximumAge: 27000,
+  };
+
   useEffect(() => {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         (position) => {
           setCenter({
             loaded: true,
@@ -57,10 +64,56 @@ const CollectMap = () => {
         function b(error) {
           // eslint-disable-next-line no-console
           console.error(`error ${error.code} ${error.message}`);
-        }
+        },
+        options
       );
     }
   }, []);
+
+  // API code postal => coordonnées
+  const [msgHelp, setMsgHelp] = useState(
+    <div>
+      <p>
+        Si vous ne savez pas comment activer la géolocalisation, essayez ceci :`
+      </p>{' '}
+      <ul>
+        <li>
+          <a href="https://support.google.com/chrome/answer/142065?hl=en&co=GENIE.Platform%3DAndroid&oco=1">
+            Android (Chrome)
+          </a>
+        </li>
+        <li>
+          <a href="https://support.google.com/chrome/answer/142065?hl=en&co=GENIE.Platform%3DiOS&oco=1">
+            Apple (Chrome)
+          </a>
+        </li>
+      </ul>
+    </div>
+  );
+  const apiCPcoord = (cp) => {
+    axios
+      .get(`https://geo.api.gouv.fr/communes?codePostal=${cp}&format=geojson`)
+      .then((response) => {
+        if (!response.data.features.length) {
+          setMsgHelp('Code postal non valide, veuillez recharger la page.');
+        } else {
+          const coord = {
+            lat: response.data.features[0].geometry.coordinates[1],
+            lng: response.data.features[0].geometry.coordinates[0],
+          };
+          setCenter({
+            loaded: true,
+            lat: coord.lat,
+            lng: coord.lng,
+          });
+        }
+      });
+  };
+
+  const [cp, setCp] = useState('');
+  const handleCpSubmit = () => {
+    apiCPcoord(cp);
+  };
 
   // API
   let apiAerialColumn;
@@ -154,19 +207,50 @@ const CollectMap = () => {
     );
   };
 
-  /* const [verre, setVerre] = useState(true);
-  const showVerre = () => {
-    setVerre(
-      column.filter(
-        (eachColumn) => !verre || eachColumn.fields.type_dechet === 'Verre'
-      )
-    );
-  }; */
+  const [buttonFilter, setButtonFilter] = useState(true);
+
+  const toggleActive = () => {
+    setTimeout(() => {
+      setButtonFilter(!buttonFilter);
+    }, 100);
+  };
 
   return (
     <div>
-      {center.loaded ? (
+      {!center.loaded ? (
+        <div>
+          <p>Pour afficher la carte, vous pouvez au choix :</p>
+          <ul>
+            <li>autoriser la géolocalisation</li>
+            <li>renseigner un code postal</li>
+          </ul>
+          <label htmlFor="cp">
+            Code Postal :
+            <input
+              type="text"
+              name="cp"
+              id="cp"
+              value={cp}
+              onChange={(e) => setCp(e.target.value)}
+            />
+          </label>
+          <button type="button" onClick={() => handleCpSubmit()}>
+            Valider
+          </button>
+          <p>{msgHelp}</p>{' '}
+        </div>
+      ) : (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
+          <div className="button-position">
+            <button
+              type="button"
+              className={buttonFilter ? 'button-Filter' : 'button-Filter-list'}
+              onClick={toggleActive}
+            >
+              <img className="filterLogo" alt="" src={filterLogo} /> Filter
+            </button>
+          </div>
+
           <TileLayer
             url={dataMaps.tiles[0]}
             attribution={dataMaps.attribution}
@@ -290,8 +374,6 @@ const CollectMap = () => {
             ))}
           </MarkerClusterGroup>
         </MapContainer>
-      ) : (
-        ''
       )}
     </div>
   );
