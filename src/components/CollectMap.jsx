@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
 
+import filterLogo from './filterlogo.png';
 import pins from '../data/pins';
 
 const profilUser = {
@@ -206,14 +207,13 @@ const CollectMap = () => {
     );
   };
 
-  /* const [verre, setVerre] = useState(true);
-  const showVerre = () => {
-    setVerre(
-      column.filter(
-        (eachColumn) => !verre || eachColumn.fields.type_dechet === 'Verre'
-      )
-    );
-  }; */
+  const [buttonFilter, setButtonFilter] = useState(true);
+
+  const toggleActive = () => {
+    setTimeout(() => {
+      setButtonFilter(!buttonFilter);
+    }, 100);
+  };
 
   return (
     <div>
@@ -241,9 +241,16 @@ const CollectMap = () => {
         </div>
       ) : (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
-          <button type="button" className="buttonFilter">
-            Filter
-          </button>
+          <div className="button-position">
+            <button
+              type="button"
+              className={buttonFilter ? 'button-Filter' : 'button-Filter-list'}
+              onClick={toggleActive}
+            >
+              <img className="filterLogo" alt="" src={filterLogo} /> Filter
+            </button>
+          </div>
+
           <TileLayer
             url={dataMaps.tiles[0]}
             attribution={dataMaps.attribution}
