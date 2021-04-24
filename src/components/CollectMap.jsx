@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
 
+import crossLogo from './cross-sign.png';
 import filterLogo from './filterlogo.png';
 import pins from '../data/pins';
 
@@ -143,15 +144,18 @@ const CollectMap = () => {
         .then((response) => response.data)
         .then((data) => {
           apiAerialColumn = data.records;
-          setColumn(
-            apiAerialColumn.filter(
+          setColumn(apiAerialColumn);
+          // eslint-disable-next-line no-lone-blocks
+          {
+            /* .filter(
               (eachColumn) =>
                 eachColumn.fields.commune === 'Nantes' ||
                 eachColumn.fields.commune === 'Rezé' ||
                 eachColumn.fields.commune === 'Saint-Sébastien-sur-Loire' ||
-                eachColumn.fields.commune === 'Bouguenais'
-            )
-          );
+                eachColumn.fields.commune === 'Bouguenais' ||
+                eachColumn.fields.commune === 'Orvault'
+            ) */
+          }
         });
       // API COMPOST
       axios
@@ -241,15 +245,92 @@ const CollectMap = () => {
         </div>
       ) : (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
-          <div className="button-position">
-            <button
-              type="button"
-              className={buttonFilter ? 'button-Filter' : 'button-Filter-list'}
-              onClick={toggleActive}
-            >
-              <img className="filterLogo" alt="" src={filterLogo} /> Filter
-            </button>
-          </div>
+          {buttonFilter ? (
+            <div className="button-position">
+              <button
+                type="button"
+                className="button-Filter"
+                onClick={toggleActive}
+              >
+                <img className="filterLogo" alt="" src={filterLogo} /> Filter
+              </button>
+            </div>
+          ) : (
+            <div className="container">
+              <div className="button-Filter-list">
+                <button
+                  type="button"
+                  className="button-close-logo"
+                  onClick={toggleActive}
+                >
+                  <img className="closeLogo" alt="" src={crossLogo} />
+                  Close
+                </button>
+                <div className="inputList">
+                  <form className="verre-checkbox">
+                    <input
+                      type="checkbox"
+                      className="verre-checkbox"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="vehicle1">Verres</label>
+                  </form>
+                  <form className="trisac-checkbox">
+                    <input
+                      type="checkbox"
+                      className="verre-checkbox"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="vehicle1">Trisacs</label>
+                  </form>
+                  <form className="orduresmen-checkbox">
+                    <input
+                      type="checkbox"
+                      className="verre-checkbox"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="vehicle1">Ordures ménagères</label>
+                  </form>
+                  <form className="carton-checkbox">
+                    <input
+                      type="checkbox"
+                      className="verre-checkbox"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="vehicle1">Cartons</label>
+                  </form>
+                  <form className="compost-checkbox">
+                    <input
+                      type="checkbox"
+                      className="verre-checkbox"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="vehicle1">Composts</label>
+                  </form>
+                  <form className="carton-checkbox">
+                    <input
+                      type="checkbox"
+                      className="verre-checkbox"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="vehicle1">Déchetteries</label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )}
 
           <TileLayer
             url={dataMaps.tiles[0]}
@@ -312,7 +393,7 @@ const CollectMap = () => {
             ))}
             {compost.map((eachCompost) => (
               <Marker
-                key={eachCompost.recordid}
+                key={eachCompost.fields.id}
                 position={[
                   eachCompost.geometry.coordinates[1],
                   eachCompost.geometry.coordinates[0],
@@ -343,7 +424,7 @@ const CollectMap = () => {
             ))}
             {dechette.map((eachDechette) => (
               <Marker
-                key={eachDechette.recordid}
+                key={eachDechette.fields.idobj}
                 position={[
                   eachDechette.fields.location[0],
                   eachDechette.fields.location[1],
