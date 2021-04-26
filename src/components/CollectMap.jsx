@@ -121,13 +121,19 @@ const CollectMap = () => {
   let apiCompost;
   let apiDechette;
   const [column, setColumn] = useState([]);
+  const [columnInit, setColumnInit] = useState([]);
   const [compost, setCompost] = useState([]);
+  const [compostInit, setCompostInit] = useState([]);
   const [dechette, setDechette] = useState([]);
+  const [dechetteInit, setDechetteInit] = useState([]);
   const apiCall = () => {
     if (column.length > 0) {
       setColumn([]);
+      setColumnInit([]);
       setCompost([]);
       setDechette([]);
+      setDechetteInit([]);
+      setCompostInit([]);
     } else {
       // API COLLONNES AERIENNES
       axios
@@ -137,7 +143,7 @@ const CollectMap = () => {
             params: {
               apikey:
                 '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
-              rows: 500,
+              rows: 1200,
             },
           }
         )
@@ -145,7 +151,9 @@ const CollectMap = () => {
         .then((data) => {
           apiAerialColumn = data.records;
           setColumn(apiAerialColumn);
+          setColumnInit(apiAerialColumn);
         });
+
       // API COMPOST
       axios
         .get(
@@ -169,6 +177,7 @@ const CollectMap = () => {
             return false;
           }, Object.create(null));
           setCompost(filtered);
+          setCompostInit(filtered);
         });
       // API DECHETERIE
       axios
@@ -186,6 +195,7 @@ const CollectMap = () => {
         .then((data) => {
           apiDechette = data.records;
           setDechette(apiDechette);
+          setDechetteInit(apiDechette);
         });
     }
   };
@@ -206,6 +216,127 @@ const CollectMap = () => {
     setTimeout(() => {
       setButtonFilter(!buttonFilter);
     }, 100);
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const [filtreDechet, setFiltreDechet] = useState({
+    verre: true,
+    cartons: true,
+    trisac: true,
+    ordures: true,
+    compost: true,
+    dechette: true,
+  });
+
+  const handleFilterChange = (state) => {
+    const array = columnInit.filter(
+      (colonne) =>
+        (colonne.fields.type_dechet === 'Verre' && state.verre) ||
+        (colonne.fields.type_dechet === 'Papier-carton' && state.cartons) ||
+        (colonne.fields.type_dechet === 'Ordure ménagère' && state.ordures) ||
+        (colonne.fields.type_dechet === 'Trisac' && state.trisac)
+    );
+    setColumn(array);
+    if (state.compost) {
+      setCompost(compostInit);
+    } else {
+      setCompost([]);
+    }
+    if (state.dechette) {
+      setDechette(dechetteInit);
+    } else {
+      setDechette([]);
+    }
+  };
+
+  const verreFilter = () => {
+    const state = {
+      verre: !filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const cartonsFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: !filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const orduresFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: !filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const trisacFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: !filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const compostFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: !filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 100);
+    handleFilterChange(state);
+  };
+
+  const dechetteFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: !filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 100);
+    handleFilterChange(state);
   };
 
   return (
@@ -260,8 +391,9 @@ const CollectMap = () => {
                     <input
                       type="checkbox"
                       className="verre-checkbox"
-                      name="vehicle1"
-                      value="Bike"
+                      value="verre"
+                      checked={filtreDechet.verre}
+                      onChange={verreFilter}
                     />
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">Verres</label>
@@ -271,7 +403,9 @@ const CollectMap = () => {
                       type="checkbox"
                       className="verre-checkbox"
                       name="vehicle1"
-                      value="Bike"
+                      value="trisac"
+                      checked={filtreDechet.trisac}
+                      onChange={trisacFilter}
                     />
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">Trisacs</label>
@@ -281,7 +415,9 @@ const CollectMap = () => {
                       type="checkbox"
                       className="verre-checkbox"
                       name="vehicle1"
-                      value="Bike"
+                      value="ordures"
+                      checked={filtreDechet.ordures}
+                      onChange={orduresFilter}
                     />
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">Ordures ménagères</label>
@@ -291,7 +427,9 @@ const CollectMap = () => {
                       type="checkbox"
                       className="verre-checkbox"
                       name="vehicle1"
-                      value="Bike"
+                      value="cartons"
+                      checked={filtreDechet.cartons}
+                      onChange={cartonsFilter}
                     />
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">Cartons</label>
@@ -301,7 +439,9 @@ const CollectMap = () => {
                       type="checkbox"
                       className="verre-checkbox"
                       name="vehicle1"
-                      value="Bike"
+                      value="compost"
+                      checked={filtreDechet.compost}
+                      onChange={compostFilter}
                     />
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">Composts</label>
@@ -311,7 +451,8 @@ const CollectMap = () => {
                       type="checkbox"
                       className="verre-checkbox"
                       name="vehicle1"
-                      value="Bike"
+                      checked={filtreDechet.dechette}
+                      onChange={dechetteFilter}
                     />
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">Déchetteries</label>
