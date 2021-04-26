@@ -145,17 +145,6 @@ const CollectMap = () => {
         .then((data) => {
           apiAerialColumn = data.records;
           setColumn(apiAerialColumn);
-          // eslint-disable-next-line no-lone-blocks
-          {
-            /* .filter(
-              (eachColumn) =>
-                eachColumn.fields.commune === 'Nantes' ||
-                eachColumn.fields.commune === 'Rezé' ||
-                eachColumn.fields.commune === 'Saint-Sébastien-sur-Loire' ||
-                eachColumn.fields.commune === 'Bouguenais' ||
-                eachColumn.fields.commune === 'Orvault'
-            ) */
-          }
         });
       // API COMPOST
       axios
