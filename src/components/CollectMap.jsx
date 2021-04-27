@@ -143,15 +143,22 @@ const CollectMap = () => {
             params: {
               apikey:
                 '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
-              rows: 1200,
+              rows: 1150,
             },
           }
         )
         .then((response) => response.data)
         .then((data) => {
           apiAerialColumn = data.records;
-          setColumn(apiAerialColumn);
-          setColumnInit(apiAerialColumn);
+          const filteredColumn = apiAerialColumn.filter((el) => {
+            if (!apiAerialColumn[el.fields.id_colonne]) {
+              apiAerialColumn[el.fields.id_colonne] = true;
+              return true;
+            }
+            return false;
+          }, Object.create(null));
+          setColumn(filteredColumn);
+          setColumnInit(filteredColumn);
         });
 
       // API COMPOST
