@@ -5,6 +5,7 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
+import Header from './Header';
 
 import crossLogo from './cross-sign.png';
 import filterLogo from './filterlogo.png';
@@ -82,7 +83,7 @@ const CollectMap = () => {
   const [msgHelp, setMsgHelp] = useState(
     <div>
       <p>
-        Si vous ne savez pas comment activer la géolocalisation, essayez ceci :`
+        Si vous ne savez pas comment activer la géolocalisation, essayez ceci:
       </p>{' '}
       <ul>
         <li>
@@ -396,25 +397,36 @@ const CollectMap = () => {
     <div>
       {!center.loaded ? (
         <div>
-          <p>Pour afficher la carte, vous pouvez au choix :</p>
-          <ul>
-            <li>autoriser la géolocalisation</li>
-            <li>renseigner un code postal</li>
-          </ul>
-          <label htmlFor="cp">
-            Code Postal :
-            <input
-              type="text"
-              name="cp"
-              id="cp"
-              value={cp}
-              onChange={(e) => setCp(e.target.value)}
-            />
-          </label>
-          <button type="button" onClick={() => handleCpSubmit()}>
-            Valider
-          </button>
-          <p>{msgHelp}</p>{' '}
+          <Header />
+          <div className="formpostal">
+            <p className="p-geoloc">
+              Pour afficher la carte, vous pouvez au choix :
+            </p>
+            <ul>
+              <li>- autoriser la géolocalisation</li>
+              <li>- renseigner un code postal</li>
+            </ul>
+            <label className="label" htmlFor="cp">
+              <input
+                className="input"
+                placeholder="Code Postal.."
+                type="text"
+                name="cp"
+                id="cp"
+                value={cp}
+                onChange={(e) => setCp(e.target.value)}
+              />
+            </label>
+            <br />
+            <button
+              className="btn-form"
+              type="button"
+              onClick={() => handleCpSubmit()}
+            >
+              Valider
+            </button>
+            <p className="p-geoloc">{msgHelp}</p>{' '}
+          </div>
         </div>
       ) : (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
