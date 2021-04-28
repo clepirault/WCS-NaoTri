@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { useHistory } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
@@ -44,7 +45,8 @@ const dataMaps = {
   ],
 };
 
-const CollectMap = () => {
+// eslint-disable-next-line react/prop-types
+const CollectMap = ({ setUserLoc, setDepositPoint }) => {
   const [center, setCenter] = useState({
     loaded: false,
     lat: profilUser.latitude,
@@ -392,6 +394,22 @@ const CollectMap = () => {
     handleFilterChange(state);
   };
 
+  const history = useHistory();
+  const handleDeposit = (typeDechet, address, commune, latitude, longitude) => {
+    setDepositPoint({
+      type: typeDechet,
+      adr: address,
+      city: commune,
+      lat: latitude,
+      lng: longitude,
+    });
+    setUserLoc({
+      lat: center.lat,
+      lng: center.lng,
+    });
+    history.push('/deposit');
+  };
+
   return (
     <div>
       {!center.loaded ? (
@@ -417,7 +435,7 @@ const CollectMap = () => {
           <p>{msgHelp}</p>{' '}
         </div>
       ) : (
-        <MapContainer center={center} zoom={ZOOM_LEVEL}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} tap={false}>
           {buttonFilter ? (
             <div className="button-position">
               <button
@@ -619,7 +637,20 @@ const CollectMap = () => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        eachColumn.fields.type_dechet,
+                        eachColumn.fields.adresse,
+                        eachColumn.fields.commune,
+                        eachColumn.fields.geo_shape.coordinates[1],
+                        eachColumn.fields.geo_shape.coordinates[0]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}

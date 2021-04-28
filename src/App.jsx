@@ -24,6 +24,7 @@ import QuizResult from './components/QuizResult';
 import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
 import Fullscreen from './components/Fullscreen';
+import CollectValidation from './components/CollectValidation';
 
 const sliderItems = [
   {
@@ -85,8 +86,21 @@ const quizQuestions = [
   },
 ];
 
+const headerDepot = `Dépôt`;
+
 function App() {
   const [showFooter, setShowFooter] = useState(true);
+  const [depositPoint, setDepositPoint] = useState({
+    type: '',
+    adr: '',
+    city: '',
+    lat: 0,
+    lng: 0,
+  });
+  const [userLoc, setUserLoc] = useState({
+    lat: 0,
+    lng: 0,
+  });
   return (
     <div className="App">
       <Router>
@@ -124,7 +138,17 @@ function App() {
               <Social />
             </Route>
             <Route exact path="/map">
-              <CollectMap />
+              <CollectMap
+                setUserLoc={setUserLoc}
+                setDepositPoint={setDepositPoint}
+              />
+            </Route>
+            <Route exact path="/deposit">
+              <Header titre={headerDepot} />
+              <CollectValidation
+                userLoc={userLoc}
+                depositPoint={depositPoint}
+              />
             </Route>
             <Route exact path="/shop">
               <WorkInProgress />

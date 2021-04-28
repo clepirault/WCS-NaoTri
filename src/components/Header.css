@@ -1,4 +1,8 @@
 .headerStyle {
   height: 100px;
-  background-color: #46DC7B;
+  background-color: #46dc7b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
