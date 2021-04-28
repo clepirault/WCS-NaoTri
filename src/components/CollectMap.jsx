@@ -441,15 +441,16 @@ const CollectMap = () => {
                 </button>
                 <div className="inputList">
                   <form className="checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      value="verre"
-                      checked={filtreDechet.verre}
-                      onChange={verreFilter}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Verres</label>
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        value="verre"
+                        checked={filtreDechet.verre}
+                        onChange={verreFilter}
+                      />
+                      Verres
+                    </label>
                     <img
                       src={pinsVerreLogo}
                       alt="verrepin"
@@ -457,16 +458,17 @@ const CollectMap = () => {
                     />
                   </form>
                   <form className="checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="trisac"
-                      checked={filtreDechet.trisac}
-                      onChange={trisacFilter}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Trisacs</label>
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="trisac"
+                        checked={filtreDechet.trisac}
+                        onChange={trisacFilter}
+                      />
+                      Trisacs
+                    </label>
                     <img
                       src={pinsTrisacLogo}
                       alt="trisacpin"
@@ -474,16 +476,17 @@ const CollectMap = () => {
                     />
                   </form>
                   <form className="checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="cartons"
-                      checked={filtreDechet.cartons}
-                      onChange={cartonsFilter}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Cartons</label>
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="cartons"
+                        checked={filtreDechet.cartons}
+                        onChange={cartonsFilter}
+                      />
+                      Cartons
+                    </label>
                     <img
                       src={pinsCartonLogo}
                       alt="cartonpin"
@@ -491,16 +494,17 @@ const CollectMap = () => {
                     />
                   </form>
                   <form className="checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="compost"
-                      checked={filtreDechet.compost}
-                      onChange={compostFilter}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Composts</label>
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="compost"
+                        checked={filtreDechet.compost}
+                        onChange={compostFilter}
+                      />
+                      Composts
+                    </label>
                     <img
                       src={pinsCompostLogo}
                       alt="compostpin"
@@ -508,15 +512,16 @@ const CollectMap = () => {
                     />
                   </form>
                   <form className="checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      checked={filtreDechet.dechette}
-                      onChange={dechetteFilter}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Déchetteries</label>
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        checked={filtreDechet.dechette}
+                        onChange={dechetteFilter}
+                      />
+                      Déchetteries
+                    </label>
                     <img
                       src={pinsDechetteLogo}
                       alt="dechettepin"
@@ -524,16 +529,17 @@ const CollectMap = () => {
                     />
                   </form>
                   <form className="checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="ordures"
-                      checked={filtreDechet.ordures}
-                      onChange={orduresFilter}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Ordures ménagères</label>
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="ordures"
+                        checked={filtreDechet.ordures}
+                        onChange={orduresFilter}
+                      />
+                      Ordures ménagères
+                    </label>
                     <img
                       src={pinsOrduresLogo}
                       alt="ordurenpin"
@@ -541,16 +547,15 @@ const CollectMap = () => {
                     />
                   </form>
                   <form className="select-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="unselect"
-                      value="unselect"
-                      checked={selectAll}
-                      onChange={unSelect}
-                    />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="unselect"
+                        value="unselect"
+                        checked={selectAll}
+                        onChange={unSelect}
+                      />
                       {selectAll ? 'Unselect All' : 'Select All'}
                     </label>
                   </form>
