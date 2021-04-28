@@ -6,8 +6,16 @@ import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
 
+import crossLogo from './cross-sign.png';
 import filterLogo from './filterlogo.png';
 import pins from '../data/pins';
+
+import pinsVerreLogo from '../images/pins/verre.png';
+import pinsCartonLogo from '../images/pins/carton.png';
+import pinsOrduresLogo from '../images/pins/ordures.png';
+import pinsTrisacLogo from '../images/pins/trisac.png';
+import pinsCompostLogo from '../images/pins/compost.png';
+import pinsDechetteLogo from '../images/pins/dechette.png';
 
 const profilUser = {
   name: 'Bastien Tacos',
@@ -120,13 +128,21 @@ const CollectMap = () => {
   let apiCompost;
   let apiDechette;
   const [column, setColumn] = useState([]);
+  const [columnInit, setColumnInit] = useState([]);
   const [compost, setCompost] = useState([]);
+  const [compostInit, setCompostInit] = useState([]);
   const [dechette, setDechette] = useState([]);
+  const [dechetteInit, setDechetteInit] = useState([]);
+  const [selectAll, setSelectAll] = useState(true);
+
   const apiCall = () => {
     if (column.length > 0) {
       setColumn([]);
+      setColumnInit([]);
       setCompost([]);
       setDechette([]);
+      setDechetteInit([]);
+      setCompostInit([]);
     } else {
       // API COLLONNES AERIENNES
       axios
@@ -136,23 +152,24 @@ const CollectMap = () => {
             params: {
               apikey:
                 '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
-              rows: 500,
+              rows: 1150,
             },
           }
         )
         .then((response) => response.data)
         .then((data) => {
           apiAerialColumn = data.records;
-          setColumn(
-            apiAerialColumn.filter(
-              (eachColumn) =>
-                eachColumn.fields.commune === 'Nantes' ||
-                eachColumn.fields.commune === 'Rezé' ||
-                eachColumn.fields.commune === 'Saint-Sébastien-sur-Loire' ||
-                eachColumn.fields.commune === 'Bouguenais'
-            )
-          );
+          const filteredColumn = apiAerialColumn.filter((el) => {
+            if (!apiAerialColumn[el.fields.id_colonne]) {
+              apiAerialColumn[el.fields.id_colonne] = true;
+              return true;
+            }
+            return false;
+          }, Object.create(null));
+          setColumn(filteredColumn);
+          setColumnInit(filteredColumn);
         });
+
       // API COMPOST
       axios
         .get(
@@ -176,6 +193,7 @@ const CollectMap = () => {
             return false;
           }, Object.create(null));
           setCompost(filtered);
+          setCompostInit(filtered);
         });
       // API DECHETERIE
       axios
@@ -193,6 +211,7 @@ const CollectMap = () => {
         .then((data) => {
           apiDechette = data.records;
           setDechette(apiDechette);
+          setDechetteInit(apiDechette);
         });
     }
   };
@@ -213,6 +232,164 @@ const CollectMap = () => {
     setTimeout(() => {
       setButtonFilter(!buttonFilter);
     }, 100);
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const [filtreDechet, setFiltreDechet] = useState({
+    verre: true,
+    cartons: true,
+    trisac: true,
+    ordures: true,
+    compost: true,
+    dechette: true,
+  });
+
+  const handleFilterChange = (state) => {
+    const array = columnInit.filter(
+      (colonne) =>
+        (colonne.fields.type_dechet === 'Verre' && state.verre) ||
+        (colonne.fields.type_dechet === 'Papier-carton' && state.cartons) ||
+        (colonne.fields.type_dechet === 'Ordure ménagère' && state.ordures) ||
+        (colonne.fields.type_dechet === 'Trisac' && state.trisac)
+    );
+    setColumn(array);
+    if (state.compost) {
+      setCompost(compostInit);
+    } else {
+      setCompost([]);
+    }
+    if (state.dechette) {
+      setDechette(dechetteInit);
+    } else {
+      setDechette([]);
+    }
+  };
+
+  const verreFilter = () => {
+    const state = {
+      verre: !filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const cartonsFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: !filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const orduresFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: !filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const trisacFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: !filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 0);
+    handleFilterChange(state);
+  };
+
+  const compostFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: !filtreDechet.compost,
+      dechette: filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 100);
+    handleFilterChange(state);
+  };
+
+  const dechetteFilter = () => {
+    const state = {
+      verre: filtreDechet.verre,
+      cartons: filtreDechet.cartons,
+      trisac: filtreDechet.trisac,
+      ordures: filtreDechet.ordures,
+      compost: filtreDechet.compost,
+      dechette: !filtreDechet.dechette,
+    };
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 100);
+    handleFilterChange(state);
+  };
+
+  const unSelect = () => {
+    let state;
+    if (
+      filtreDechet.verre ||
+      filtreDechet.trisac ||
+      filtreDechet.cartons ||
+      filtreDechet.ordures ||
+      filtreDechet.trisac ||
+      filtreDechet.compost ||
+      filtreDechet.dechette
+    ) {
+      state = {
+        verre: false,
+        cartons: false,
+        trisac: false,
+        ordures: false,
+        compost: false,
+        dechette: false,
+      };
+      setSelectAll(false);
+    } else {
+      state = {
+        verre: true,
+        cartons: true,
+        trisac: true,
+        ordures: true,
+        compost: true,
+        dechette: true,
+      };
+      setSelectAll(true);
+    }
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 100);
+    handleFilterChange(state);
   };
 
   return (
@@ -241,15 +418,151 @@ const CollectMap = () => {
         </div>
       ) : (
         <MapContainer center={center} zoom={ZOOM_LEVEL}>
-          <div className="button-position">
-            <button
-              type="button"
-              className={buttonFilter ? 'button-Filter' : 'button-Filter-list'}
-              onClick={toggleActive}
-            >
-              <img className="filterLogo" alt="" src={filterLogo} /> Filter
-            </button>
-          </div>
+          {buttonFilter ? (
+            <div className="button-position">
+              <button
+                type="button"
+                className="button-Filter"
+                onClick={toggleActive}
+              >
+                <img className="filterLogo" alt="" src={filterLogo} /> Filter
+              </button>
+            </div>
+          ) : (
+            <div className="container">
+              <div className="button-Filter-list">
+                <button
+                  type="button"
+                  className="button-close-logo"
+                  onClick={toggleActive}
+                >
+                  <img className="closeLogo" alt="" src={crossLogo} />
+                  Close
+                </button>
+                <div className="inputList">
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        value="verre"
+                        checked={filtreDechet.verre}
+                        onChange={verreFilter}
+                      />
+                      Verres
+                    </label>
+                    <img
+                      src={pinsVerreLogo}
+                      alt="verrepin"
+                      className="pinsVerre"
+                    />
+                  </form>
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="trisac"
+                        checked={filtreDechet.trisac}
+                        onChange={trisacFilter}
+                      />
+                      Trisacs
+                    </label>
+                    <img
+                      src={pinsTrisacLogo}
+                      alt="trisacpin"
+                      className="pinsTrisac"
+                    />
+                  </form>
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="cartons"
+                        checked={filtreDechet.cartons}
+                        onChange={cartonsFilter}
+                      />
+                      Cartons
+                    </label>
+                    <img
+                      src={pinsCartonLogo}
+                      alt="cartonpin"
+                      className="pinsCarton"
+                    />
+                  </form>
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="compost"
+                        checked={filtreDechet.compost}
+                        onChange={compostFilter}
+                      />
+                      Composts
+                    </label>
+                    <img
+                      src={pinsCompostLogo}
+                      alt="compostpin"
+                      className="pinsCompost"
+                    />
+                  </form>
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        checked={filtreDechet.dechette}
+                        onChange={dechetteFilter}
+                      />
+                      Déchetteries
+                    </label>
+                    <img
+                      src={pinsDechetteLogo}
+                      alt="dechettepin"
+                      className="pinsDechette"
+                    />
+                  </form>
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="ordures"
+                        checked={filtreDechet.ordures}
+                        onChange={orduresFilter}
+                      />
+                      Ordures ménagères
+                    </label>
+                    <img
+                      src={pinsOrduresLogo}
+                      alt="ordurenpin"
+                      className="pinsOrdure"
+                    />
+                  </form>
+                  <form className="select-checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="unselect"
+                        value="unselect"
+                        checked={selectAll}
+                        onChange={unSelect}
+                      />
+                      {selectAll ? 'Unselect All' : 'Select All'}
+                    </label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )}
 
           <TileLayer
             url={dataMaps.tiles[0]}
@@ -312,7 +625,7 @@ const CollectMap = () => {
             ))}
             {compost.map((eachCompost) => (
               <Marker
-                key={eachCompost.recordid}
+                key={eachCompost.fields.id}
                 position={[
                   eachCompost.geometry.coordinates[1],
                   eachCompost.geometry.coordinates[0],
@@ -343,7 +656,7 @@ const CollectMap = () => {
             ))}
             {dechette.map((eachDechette) => (
               <Marker
-                key={eachDechette.recordid}
+                key={eachDechette.fields.idobj}
                 position={[
                   eachDechette.fields.location[0],
                   eachDechette.fields.location[1],
