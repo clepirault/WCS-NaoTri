@@ -1,0 +1,40 @@
+.Fullscreen {
+  background-color: #46dc7b;
+}
+
+.msgArrow {
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.msg p {
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+.bottom {
+  background-color: #46dc7b;
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+}
+
+.bottomBtn {
+  height: 50px;
+  width: 200px;
+  margin-bottom: 5px;
+  border-radius: 0.5rem;
+}
+
+.arrowDown {
+  height: 100px;
+  width: 100px;
+  transform: rotate(180deg);
+}

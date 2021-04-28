@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
 import SliderComponent from './components/SliderComponent';
@@ -22,6 +23,7 @@ import WorkInProgress from './components/WorkInProgress';
 import QuizResult from './components/QuizResult';
 import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
+import Fullscreen from './components/Fullscreen';
 
 const sliderItems = [
   {
@@ -84,11 +86,15 @@ const quizQuestions = [
 ];
 
 function App() {
+  const [showFooter, setShowFooter] = useState(true);
   return (
     <div className="App">
       <Router>
         <div>
           <Switch>
+            <Route exact path="/">
+              <Fullscreen setShowFooter={setShowFooter} />
+            </Route>
             <Route exact path="/slider">
               {sliderItems.map((sliderItem) => (
                 <SliderComponent {...sliderItem} />
@@ -137,9 +143,13 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <nav>
-          <Footer />
-        </nav>
+        {showFooter ? (
+          <nav>
+            <Footer />
+          </nav>
+        ) : (
+          ''
+        )}
       </Router>
     </div>
   );
