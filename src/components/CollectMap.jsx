@@ -10,6 +10,13 @@ import crossLogo from './cross-sign.png';
 import filterLogo from './filterlogo.png';
 import pins from '../data/pins';
 
+import pinsVerreLogo from '../images/pins/verre.png';
+import pinsCartonLogo from '../images/pins/carton.png';
+import pinsOrduresLogo from '../images/pins/ordures.png';
+import pinsTrisacLogo from '../images/pins/trisac.png';
+import pinsCompostLogo from '../images/pins/compost.png';
+import pinsDechetteLogo from '../images/pins/dechette.png';
+
 const profilUser = {
   name: 'Bastien Tacos',
   avatar: 'https://bit.ly/2OK8Gy4',
@@ -126,6 +133,8 @@ const CollectMap = () => {
   const [compostInit, setCompostInit] = useState([]);
   const [dechette, setDechette] = useState([]);
   const [dechetteInit, setDechetteInit] = useState([]);
+  const [selectAll, setSelectAll] = useState(true);
+
   const apiCall = () => {
     if (column.length > 0) {
       setColumn([]);
@@ -143,15 +152,22 @@ const CollectMap = () => {
             params: {
               apikey:
                 '04a7eb6b96d9388e1563ce20a134636ecea950ff095a6e554ae00c66',
-              rows: 1200,
+              rows: 1150,
             },
           }
         )
         .then((response) => response.data)
         .then((data) => {
           apiAerialColumn = data.records;
-          setColumn(apiAerialColumn);
-          setColumnInit(apiAerialColumn);
+          const filteredColumn = apiAerialColumn.filter((el) => {
+            if (!apiAerialColumn[el.fields.id_colonne]) {
+              apiAerialColumn[el.fields.id_colonne] = true;
+              return true;
+            }
+            return false;
+          }, Object.create(null));
+          setColumn(filteredColumn);
+          setColumnInit(filteredColumn);
         });
 
       // API COMPOST
@@ -339,6 +355,43 @@ const CollectMap = () => {
     handleFilterChange(state);
   };
 
+  const unSelect = () => {
+    let state;
+    if (
+      filtreDechet.verre ||
+      filtreDechet.trisac ||
+      filtreDechet.cartons ||
+      filtreDechet.ordures ||
+      filtreDechet.trisac ||
+      filtreDechet.compost ||
+      filtreDechet.dechette
+    ) {
+      state = {
+        verre: false,
+        cartons: false,
+        trisac: false,
+        ordures: false,
+        compost: false,
+        dechette: false,
+      };
+      setSelectAll(false);
+    } else {
+      state = {
+        verre: true,
+        cartons: true,
+        trisac: true,
+        ordures: true,
+        compost: true,
+        dechette: true,
+      };
+      setSelectAll(true);
+    }
+    setTimeout(() => {
+      setFiltreDechet(state);
+    }, 100);
+    handleFilterChange(state);
+  };
+
   return (
     <div>
       {!center.loaded ? (
@@ -387,75 +440,124 @@ const CollectMap = () => {
                   Close
                 </button>
                 <div className="inputList">
-                  <form className="verre-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      value="verre"
-                      checked={filtreDechet.verre}
-                      onChange={verreFilter}
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        value="verre"
+                        checked={filtreDechet.verre}
+                        onChange={verreFilter}
+                      />
+                      Verres
+                    </label>
+                    <img
+                      src={pinsVerreLogo}
+                      alt="verrepin"
+                      className="pinsVerre"
                     />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Verres</label>
                   </form>
-                  <form className="trisac-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="trisac"
-                      checked={filtreDechet.trisac}
-                      onChange={trisacFilter}
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="trisac"
+                        checked={filtreDechet.trisac}
+                        onChange={trisacFilter}
+                      />
+                      Trisacs
+                    </label>
+                    <img
+                      src={pinsTrisacLogo}
+                      alt="trisacpin"
+                      className="pinsTrisac"
                     />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Trisacs</label>
                   </form>
-                  <form className="orduresmen-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="ordures"
-                      checked={filtreDechet.ordures}
-                      onChange={orduresFilter}
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="cartons"
+                        checked={filtreDechet.cartons}
+                        onChange={cartonsFilter}
+                      />
+                      Cartons
+                    </label>
+                    <img
+                      src={pinsCartonLogo}
+                      alt="cartonpin"
+                      className="pinsCarton"
                     />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Ordures ménagères</label>
                   </form>
-                  <form className="carton-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="cartons"
-                      checked={filtreDechet.cartons}
-                      onChange={cartonsFilter}
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="compost"
+                        checked={filtreDechet.compost}
+                        onChange={compostFilter}
+                      />
+                      Composts
+                    </label>
+                    <img
+                      src={pinsCompostLogo}
+                      alt="compostpin"
+                      className="pinsCompost"
                     />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Cartons</label>
                   </form>
-                  <form className="compost-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      value="compost"
-                      checked={filtreDechet.compost}
-                      onChange={compostFilter}
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        checked={filtreDechet.dechette}
+                        onChange={dechetteFilter}
+                      />
+                      Déchetteries
+                    </label>
+                    <img
+                      src={pinsDechetteLogo}
+                      alt="dechettepin"
+                      className="pinsDechette"
                     />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Composts</label>
                   </form>
-                  <form className="carton-checkbox">
-                    <input
-                      type="checkbox"
-                      className="verre-checkbox"
-                      name="vehicle1"
-                      checked={filtreDechet.dechette}
-                      onChange={dechetteFilter}
+                  <form className="checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="vehicle1"
+                        value="ordures"
+                        checked={filtreDechet.ordures}
+                        onChange={orduresFilter}
+                      />
+                      Ordures ménagères
+                    </label>
+                    <img
+                      src={pinsOrduresLogo}
+                      alt="ordurenpin"
+                      className="pinsOrdure"
                     />
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                    <label htmlFor="vehicle1">Déchetteries</label>
+                  </form>
+                  <form className="select-checkbox">
+                    <label htmlFor="vehicle1">
+                      <input
+                        type="checkbox"
+                        className="verre-checkbox"
+                        name="unselect"
+                        value="unselect"
+                        checked={selectAll}
+                        onChange={unSelect}
+                      />
+                      {selectAll ? 'Unselect All' : 'Select All'}
+                    </label>
                   </form>
                 </div>
               </div>
