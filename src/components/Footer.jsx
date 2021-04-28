@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import homeIcon from '../images/homeIcon.svg';
-import ideaIcon from '../images/ideaIcon.svg';
-import shopIcon from '../images/shopIcon.svg';
-import locationIcon from '../images/locationIcon.svg';
-import userIcon from '../images/userIcon.svg';
+import homeIcon from '../images/homeIconfull.svg';
+import ideaIcon from '../images/ideaIconfull.svg';
+import shopIcon from '../images/shopIconfull.svg';
+import locationIcon from '../images/locationIconfull.svg';
+import userIcon from '../images/profileIconfull.svg';
 
 function Footer() {
   return (
