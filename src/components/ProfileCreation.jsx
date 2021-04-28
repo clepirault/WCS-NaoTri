@@ -15,15 +15,15 @@ function ProfileCreation() {
       </div>
       <div className="infos">
         <form className="pseudo">
-          <label htmlFor="name">Entre ton Pseudo </label>
+          <label htmlFor="name">Pseudo </label>
           <input type="text" name="name" id="name" placeholder="Pierrafeu" />
         </form>
         <form className="birthday">
-          <label htmlFor="date"> Ta date de naissance </label>
+          <label htmlFor="date"> Date de naissance </label>
           <input type="date" name="date" id="date" />
         </form>
         <form className="email">
-          <label htmlFor="email"> Ton couriel </label>
+          <label htmlFor="email"> Email </label>
           <input
             type="email"
             name="email"
