@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import './CollectValidation.css';
@@ -28,6 +27,7 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
     return Math.floor(d);
   }
 
+  // eslint-disable-next-line no-unused-vars
   const [dist, setDist] = useState(
     Distance(userLoc.lat, userLoc.lng, depositPoint.lat, depositPoint.lng)
   );
