@@ -1,12 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
-import SliderComponent from './components/SliderComponent';
-
 import Quiz from './components/Quiz';
-import logoNaotri from './components/logoNaotri.png';
-import trash from './components/trash.png';
-import trophy from './components/trophy.png';
-import shopping from './components/shopping.png';
 import bottle from './components/bottle.png';
 import robinet from './components/robinet.png';
 import totebag from './components/totebag.png';
@@ -22,26 +16,7 @@ import WorkInProgress from './components/WorkInProgress';
 import QuizResult from './components/QuizResult';
 import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
-
-const sliderItems = [
-  {
-    image: logoNaotri,
-    description: 'Trie tes déchets de manière ludique!',
-  },
-  {
-    image: trash,
-    description: 'Trouve les points de collecte les plus proches de chez toi !',
-  },
-  {
-    image: trophy,
-    description: 'Relève des défis et gagne des points!',
-  },
-  {
-    image: shopping,
-    description:
-      'Echange tes points contre des réductions dans tes enseignes préférées!',
-  },
-];
+import Slider from './components/Slider';
 
 const quizQuestions = [
   {
@@ -90,9 +65,7 @@ function App() {
         <div>
           <Switch>
             <Route exact path="/slider">
-              {sliderItems.map((sliderItem) => (
-                <SliderComponent {...sliderItem} />
-              ))}
+              <Slider />
               <Link to="/quiz0">
                 <button type="button">Quiz1</button>
               </Link>
