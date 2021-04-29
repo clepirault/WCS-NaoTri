@@ -57,7 +57,7 @@ const quizQuestions = [
     value2: '0',
     image2: robinet,
     answer2: "...cours acheter une bouteille d'eau en plastique",
-    value1: '1',
+    value1: '10',
   },
   {
     key: 1,
@@ -66,7 +66,7 @@ const quizQuestions = [
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
-    value1: '1',
+    value1: '10',
     image3: plasticbag,
     answer2: '...achètes un sac plastique à chaque fois ?',
     value2: '0',
@@ -82,7 +82,7 @@ const quizQuestions = [
     image2: don,
     answer1:
       '...les déposes à une benne de recyclage ou les donnes à une association ?',
-    value1: '1',
+    value1: '10',
   },
 ];
 

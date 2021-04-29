@@ -6,3 +6,21 @@
   align-items: center;
   font-size: 30px;
 }
+
+.welcome {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+}
+
+.welcome-message {
+  font-size: 35px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.img-header {
+  width: 130px;
+  height: 130px;
+  margin-left: -37px;
+}
