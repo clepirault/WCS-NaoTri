@@ -85,10 +85,7 @@ function App() {
               <Fullscreen setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/slider">
-              <Slider />
-              <Link to="/quiz0">
-                <button type="button">Quiz1</button>
-              </Link>
+              <Slider /
             </Route>
             <Route exact path="/quiz0">
               <Quiz {...quizQuestions[0]} />
