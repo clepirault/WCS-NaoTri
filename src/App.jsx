@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
 import SliderComponent from './components/SliderComponent';
@@ -22,6 +23,8 @@ import WorkInProgress from './components/WorkInProgress';
 import QuizResult from './components/QuizResult';
 import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
+import Fullscreen from './components/Fullscreen';
+import CollectValidation from './components/CollectValidation';
 
 const sliderItems = [
   {
@@ -54,7 +57,7 @@ const quizQuestions = [
     value2: '0',
     image2: robinet,
     answer2: "...cours acheter une bouteille d'eau en plastique",
-    value1: '1',
+    value1: '10',
   },
   {
     key: 1,
@@ -63,7 +66,7 @@ const quizQuestions = [
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
-    value1: '1',
+    value1: '10',
     image3: plasticbag,
     answer2: '...achètes un sac plastique à chaque fois ?',
     value2: '0',
@@ -79,16 +82,33 @@ const quizQuestions = [
     image2: don,
     answer1:
       '...les déposes à une benne de recyclage ou les donnes à une association ?',
-    value1: '1',
+    value1: '10',
   },
 ];
 
+const headerDepot = `Dépôt`;
+
 function App() {
+  const [showFooter, setShowFooter] = useState(true);
+  const [depositPoint, setDepositPoint] = useState({
+    type: '',
+    adr: '',
+    city: '',
+    lat: 0,
+    lng: 0,
+  });
+  const [userLoc, setUserLoc] = useState({
+    lat: 0,
+    lng: 0,
+  });
   return (
     <div className="App">
       <Router>
         <div>
           <Switch>
+            <Route exact path="/">
+              <Fullscreen setShowFooter={setShowFooter} />
+            </Route>
             <Route exact path="/slider">
               {sliderItems.map((sliderItem) => (
                 <SliderComponent {...sliderItem} />
@@ -118,7 +138,17 @@ function App() {
               <Social />
             </Route>
             <Route exact path="/map">
-              <CollectMap />
+              <CollectMap
+                setUserLoc={setUserLoc}
+                setDepositPoint={setDepositPoint}
+              />
+            </Route>
+            <Route exact path="/deposit">
+              <Header titre={headerDepot} />
+              <CollectValidation
+                userLoc={userLoc}
+                depositPoint={depositPoint}
+              />
             </Route>
             <Route exact path="/shop">
               <WorkInProgress />
@@ -137,9 +167,13 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <nav>
-          <Footer />
-        </nav>
+        {showFooter ? (
+          <nav>
+            <Footer />
+          </nav>
+        ) : (
+          ''
+        )}
       </Router>
     </div>
   );

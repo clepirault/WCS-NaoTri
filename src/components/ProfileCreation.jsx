@@ -11,7 +11,7 @@ function ProfileCreation() {
       <h1 className="Naotri">NAOTRI</h1>
       <div className="picture">
         <img src={avatar} alt="avatar" className="avatar" />
-        <p>Choisi ton avatar</p>
+        <p>Choisis ton avatar</p>
       </div>
       <div className="infos">
         <form className="pseudo">
