@@ -1,6 +1,6 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './Header.css';
+// image gardé pour plus tard
 // import earthlogo from '../images/planet-earth1.svg';
 import naotrilogo from '../images/naotrilogonob1.png';
 
