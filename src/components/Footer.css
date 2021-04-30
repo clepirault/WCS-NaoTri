@@ -2,21 +2,29 @@
 Oswald*/
 
 .footerStyle {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   margin: 0;
   padding: 0;
   background-color: #46dc7b;
   height: 75px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.footerNav{
+.footerNav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.footerNav img {
+  width: 35px;
+  height: 35px;
+  filter: invert(100%);
 }
 
 .copyright {
@@ -26,4 +34,3 @@ Oswald*/
   color: white;
   font-weight: normal;
 }
-

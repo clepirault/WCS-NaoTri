@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import './profileCreation.css';
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
-import avatar from '../images/avatar.jpeg';
+/* import avatar from '../images/avatar.jpeg'; */
+import astronaut from '../images/astronaut.svg';
+import ninja from '../images/ninja.svg';
+import monster from '../images/monster.svg';
 
 function ProfileCreation() {
   const [pseudo, setPseudo] = useState('');
@@ -29,8 +32,13 @@ function ProfileCreation() {
     <div className="ProfileCreation">
       <h1 className="Naotri">NAOTRI</h1>
       <div className="picture">
-        <img src={avatar} alt="avatar" className="avatar" />
-        <p>Choisi ton avatar</p>
+        {/* <img src={avatar} alt="avatar" className="avatar" /> */}
+        <p>Choisis ton avatar</p>
+        <div>
+          <img src={ninja} alt="avatar" />
+          <img src={astronaut} alt="avatar" />
+          <img src={monster} alt="avatar" />
+        </div>
       </div>
       <div className="infos">
         <form className="pseudo">

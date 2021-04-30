@@ -11,35 +11,35 @@ function Home() {
   return (
     <div className="homePage">
       <div className="homeBloc">
-        <Link to="/map">
+        <Link to="/map" style={{ textDecoration: 'none' }}>
           <div className="menu-collecte">
             <img
               src={recycleBinIcon}
               alt="Recycle Bin"
               className="recycle-bin"
             />
-            <h1>Points de collecte</h1>
+            <h1>Points de Dépots</h1>
           </div>
         </Link>
-        <Link to="/shop">
+        <Link to="/shop" style={{ textDecoration: 'none' }}>
           <div className="menu-enseignes">
             <img src={storeIcon} alt="Stores" className="stores" />
             <h1>Enseignes</h1>
           </div>
         </Link>
-        <Link to="/profile">
+        <Link to="/profile" style={{ textDecoration: 'none' }}>
           <div className="menu-espace">
             <img src={profileIcon} alt="Profil" className="profil" />
             <h1>Mon espace</h1>
           </div>
         </Link>
-        <Link to="/challenge">
+        <Link to="/challenge" style={{ textDecoration: 'none' }}>
           <div className="menu-defi">
             <img src={trophyIcon} alt="Challenge" className="challange" />
             <h1>Défi !</h1>
           </div>
         </Link>
-        <Link to="/about">
+        <Link to="/about" style={{ textDecoration: 'none' }}>
           <div className="a-propos">
             <img src={aboutIcon} alt="About" className="about" />
             <h1>À propos</h1>
