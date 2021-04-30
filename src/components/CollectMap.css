@@ -116,3 +116,45 @@
   width: 40px;
   height: 40px;
 }
+
+.formpostal {
+  display: block;
+  text-align: center;
+  margin: auto 20px;
+  justify-content: center;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.input {
+  background-color: #eee;
+  height: 30px;
+  width: 140px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.btn-form {
+  margin-top: 5px;
+  margin-bottom: 30px;
+  height: 30px;
+  width: 100px;
+  border-radius: 30px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #46dc7b;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.p-geoloc {
+  font-weight: 500;
+  font-size: 20px;
+}

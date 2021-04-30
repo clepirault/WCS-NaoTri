@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { useHistory } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
+import Header from './Header';
 
 import crossLogo from './cross-sign.png';
 import filterLogo from './filterlogo.png';
@@ -44,7 +46,8 @@ const dataMaps = {
   ],
 };
 
-const CollectMap = () => {
+// eslint-disable-next-line react/prop-types
+const CollectMap = ({ setUserLoc, setDepositPoint }) => {
   const [center, setCenter] = useState({
     loaded: false,
     lat: profilUser.latitude,
@@ -82,7 +85,7 @@ const CollectMap = () => {
   const [msgHelp, setMsgHelp] = useState(
     <div>
       <p>
-        Si vous ne savez pas comment activer la géolocalisation, essayez ceci :`
+        Si vous ne savez pas comment activer la géolocalisation, essayez ceci:
       </p>{' '}
       <ul>
         <li>
@@ -392,32 +395,59 @@ const CollectMap = () => {
     handleFilterChange(state);
   };
 
+  const history = useHistory();
+  const handleDeposit = (typeDechet, address, commune, latitude, longitude) => {
+    setDepositPoint({
+      type: typeDechet,
+      adr: address,
+      city: commune,
+      lat: latitude,
+      lng: longitude,
+    });
+    setUserLoc({
+      lat: center.lat,
+      lng: center.lng,
+    });
+    history.push('/deposit');
+  };
+
   return (
     <div>
       {!center.loaded ? (
         <div>
-          <p>Pour afficher la carte, vous pouvez au choix :</p>
-          <ul>
-            <li>autoriser la géolocalisation</li>
-            <li>renseigner un code postal</li>
-          </ul>
-          <label htmlFor="cp">
-            Code Postal :
-            <input
-              type="text"
-              name="cp"
-              id="cp"
-              value={cp}
-              onChange={(e) => setCp(e.target.value)}
-            />
-          </label>
-          <button type="button" onClick={() => handleCpSubmit()}>
-            Valider
-          </button>
-          <p>{msgHelp}</p>{' '}
+          <Header />
+          <div className="formpostal">
+            <p className="p-geoloc">
+              Pour afficher la carte, vous pouvez au choix :
+            </p>
+            <ul>
+              <li>- autoriser la géolocalisation</li>
+              <li>- renseigner un code postal</li>
+            </ul>
+            <label className="label" htmlFor="cp">
+              <input
+                className="input"
+                placeholder="Code Postal.."
+                type="text"
+                name="cp"
+                id="cp"
+                value={cp}
+                onChange={(e) => setCp(e.target.value)}
+              />
+            </label>
+            <br />
+            <button
+              className="btn-form"
+              type="button"
+              onClick={() => handleCpSubmit()}
+            >
+              Valider
+            </button>
+            <p className="p-geoloc">{msgHelp}</p>{' '}
+          </div>
         </div>
       ) : (
-        <MapContainer center={center} zoom={ZOOM_LEVEL}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} tap={false}>
           {buttonFilter ? (
             <div className="button-position">
               <button
@@ -619,7 +649,20 @@ const CollectMap = () => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        eachColumn.fields.type_dechet,
+                        eachColumn.fields.adresse,
+                        eachColumn.fields.commune,
+                        eachColumn.fields.geo_shape.coordinates[1],
+                        eachColumn.fields.geo_shape.coordinates[0]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}
