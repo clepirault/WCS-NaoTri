@@ -29,4 +29,15 @@ h1 {
   box-shadow: 12px 12px 12px grey;
   display: flex;
   justify-content: space-between;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

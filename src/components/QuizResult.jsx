@@ -14,16 +14,20 @@ function QuizResult() {
   };
 
   return (
-    <div>
-      <h3 className="quizScore">Votre score : {resultToScore}/3</h3>
+    <div className="quiz-result">
+      <div className="quizScore">
+        <h3>Votre score : {resultToScore}/3</h3>
+      </div>
       <p className="quizScoreMessage">
         {result === 3
           ? 'Super ! tu as réussi. Rejoins-nous vite pour collecter tes premiers points.'
           : "Tu peux mieux faire. Rejoins-nous vite pour t'améliorer !"}
       </p>
-      <button type="button" onClick={handleClic}>
-        Continuer
-      </button>
+      <div className="btn-final">
+        <button className="btn-quiz" type="button" onClick={handleClic}>
+          Continuer
+        </button>
+      </div>
       <p>Points gagnés: {result}</p>
     </div>
   );
