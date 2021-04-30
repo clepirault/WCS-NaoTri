@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/no-this-in-sfc */
 /* eslint-disable react/destructuring-assignment */
 import './slider.css';
 

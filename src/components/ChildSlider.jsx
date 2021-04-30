@@ -1,11 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-this-in-sfc */
 /* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import React from 'react';
 
 function ChildSlider(props) {
-  console.log(props);
   return (
     <div>
       <button
