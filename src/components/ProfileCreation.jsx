@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import './profileCreation.css';
+// link sera utilisé plus tard
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
-/* import avatar from '../images/avatar.jpeg'; */
 import astronaut from '../images/astronaut.svg';
 import ninja from '../images/ninja.svg';
 import monster from '../images/monster.svg';
@@ -32,7 +31,6 @@ function ProfileCreation() {
     <div className="ProfileCreation">
       <h1 className="Naotri">NAOTRI</h1>
       <div className="picture">
-        {/* <img src={avatar} alt="avatar" className="avatar" /> */}
         <p>Choisis ton avatar</p>
         <div>
           <img src={ninja} alt="avatar" />
@@ -42,36 +40,42 @@ function ProfileCreation() {
       </div>
       <div className="infos">
         <form className="pseudo">
-          <label htmlFor="pseudo">Pseudo: </label>
-          <input
-            type="text"
-            name="pseudo"
-            id="pseudo"
-            placeholder="Pierrafeu"
-            onChange={handleChangePseudo}
-            value={pseudo}
-          />
+          <label htmlFor="pseudo">
+            Pseudo:
+            <input
+              type="text"
+              name="pseudo"
+              id="pseudo"
+              placeholder="Pierrafeu"
+              onChange={handleChangePseudo}
+              value={pseudo}
+            />
+          </label>
         </form>
         <form className="birthday">
-          <label htmlFor="birthday"> Date de naissance </label>
-          <input
-            type="date"
-            name="birthday"
-            id="birthday"
-            onChange={handleChangeBirthday}
-            value={birthday}
-          />
+          <label htmlFor="birthday">
+            Date de naissance:
+            <input
+              type="date"
+              name="birthday"
+              id="birthday"
+              onChange={handleChangeBirthday}
+              value={birthday}
+            />
+          </label>
         </form>
         <form className="email">
-          <label htmlFor="email"> Email </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="fred.pierrafeu@naotri.com"
-            onChange={handleChangeEmail}
-            value={email}
-          />
+          <label htmlFor="email">
+            Email :
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="fred.pierrafeu@naotri.com"
+              onChange={handleChangeEmail}
+              value={email}
+            />
+          </label>
         </form>
         <form className="submit">
           <button type="submit" id="submit" onClick={handleClic}>
