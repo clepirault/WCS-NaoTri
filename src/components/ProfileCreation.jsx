@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import './profileCreation.css';
 // link sera utilisé plus tard
@@ -11,11 +13,16 @@ function ProfileCreation() {
   const [pseudo, setPseudo] = useState('');
   const [birthday, setBirthday] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const handleClic = () => {
     localStorage.setItem('pseudo', pseudo);
     localStorage.setItem('birthday', birthday);
     localStorage.setItem('email', email);
+    localStorage.setItem('avatar', avatar);
+  };
+  const handleClicAvatar = (avatarValue) => {
+    setAvatar(avatarValue);
   };
   const handleChangePseudo = (event) => {
     setPseudo(event.target.value);
@@ -33,9 +40,30 @@ function ProfileCreation() {
       <div className="picture">
         <p>Choisis ton avatar</p>
         <div>
-          <img src={ninja} alt="avatar" />
-          <img src={astronaut} alt="avatar" />
-          <img src={monster} alt="avatar" />
+          <img
+            src={ninja}
+            name="avatar"
+            alt="avatar1"
+            onClick={() => {
+              handleClicAvatar(ninja);
+            }}
+          />
+          <img
+            src={astronaut}
+            name="avatar"
+            alt="avatar2"
+            onClick={() => {
+              handleClicAvatar(astronaut);
+            }}
+          />
+          <img
+            src={monster}
+            name="avatar"
+            alt="avatar3"
+            onClick={() => {
+              handleClicAvatar(monster);
+            }}
+          />
         </div>
       </div>
       <div className="infos">
