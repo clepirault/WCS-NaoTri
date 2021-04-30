@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
 import Quiz from './components/Quiz';
 import bottle from './components/bottle.png';
@@ -85,7 +85,7 @@ function App() {
               <Fullscreen setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/slider">
-              <Slider /
+              <Slider />
             </Route>
             <Route exact path="/quiz0">
               <Quiz {...quizQuestions[0]} />
