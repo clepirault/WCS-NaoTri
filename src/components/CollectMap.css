@@ -29,29 +29,90 @@
   cursor: pointer;
   border: none;
   font-size: 18px;
-  background-color: #46dc7b;
+  background-color: rgb(70, 220, 123);
   font-weight: 900;
   letter-spacing: 1.5px;
   transition: 0.4s ease-in-out;
+  box-shadow: 2px 2px 2px 1px rgba(148, 160, 153, 0.7);
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  z-index: 1000000;
+  position: absolute;
 }
 
 .button-Filter-list {
-  height: 420px;
+  height: 450px;
   width: 280px;
   transition: 0.4s ease-in-out;
   border-radius: 25px;
   outline: none;
-  cursor: pointer;
   border: none;
   font-size: 18px;
   background-color: #46dc7b;
   font-weight: 900;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   z-index: 1000000;
   position: absolute;
+  box-shadow: 2px 2px 2px 1px rgba(148, 160, 153, 0.7);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .filterLogo {
   width: 15px;
   height: 15px;
+}
+
+.closeLogo {
+  width: 18px;
+  height: 18px;
+}
+
+.button-close-logo {
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 25px;
+  margin-top: 10px;
+  padding: 0 5px;
+  transition: 0.4s ease-in-out;
+}
+
+.checkbox {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.verre-checkbox {
+  height: 19px;
+  width: 19px;
+}
+
+.select-checkbox {
+  margin-top: 27px;
+  padding-left: 20px;
+  color: rgb(119, 119, 119);
+}
+
+.pinsVerre,
+.pinsCarton,
+.pinsCompost,
+.pinsDechette,
+.pinsOrdure,
+.pinsTrisac {
+  width: 40px;
+  height: 40px;
 }
