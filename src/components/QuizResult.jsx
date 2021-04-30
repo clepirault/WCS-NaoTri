@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import './quiz.css';
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function QuizResult() {
+function QuizResult(props) {
   const score1 = localStorage.getItem('Question1') || '0';
   const score2 = localStorage.getItem('Question2') || '0';
   const score3 = localStorage.getItem('Question3') || '0';
@@ -12,6 +13,13 @@ function QuizResult() {
   const handleClic = () => {
     localStorage.setItem('result', result);
   };
+
+  useEffect(() => {
+    props.setShowFooter(false);
+    return () => {
+      props.setShowFooter(true);
+    };
+  }, []);
 
   return (
     <div className="quiz-result">
@@ -24,9 +32,11 @@ function QuizResult() {
           : "Tu peux mieux faire. Rejoins-nous vite pour t'améliorer !"}
       </p>
       <div className="btn-final">
-        <button className="btn-quiz" type="button" onClick={handleClic}>
-          Continuer
-        </button>
+        <Link to="/profile">
+          <button className="btn-quiz" type="button" onClick={handleClic}>
+            Continuer
+          </button>
+        </Link>
       </div>
       <p>Points gagnés: {result}</p>
     </div>

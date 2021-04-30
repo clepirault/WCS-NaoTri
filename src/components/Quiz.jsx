@@ -1,11 +1,18 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './quiz.css';
 
 function Quiz(props) {
   const [active, setActive] = useState(true);
   const [active2, setActive2] = useState(true);
+
+  useEffect(() => {
+    props.setShowFooter(false);
+    return () => {
+      props.setShowFooter(true);
+    };
+  }, []);
 
   const {
     id,

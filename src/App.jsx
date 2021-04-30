@@ -118,16 +118,16 @@ function App() {
               </Link>
             </Route>
             <Route exact path="/quiz0">
-              <Quiz {...quizQuestions[0]} />
+              <Quiz {...quizQuestions[0]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz1">
-              <Quiz {...quizQuestions[1]} />
+              <Quiz {...quizQuestions[1]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz2">
-              <Quiz {...quizQuestions[2]} />
+              <Quiz {...quizQuestions[2]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quizResult">
-              <QuizResult />
+              <QuizResult setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/login">
               <WorkInProgress />
