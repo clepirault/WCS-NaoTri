@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
-import SliderComponent from './components/SliderComponent';
-
 import Quiz from './components/Quiz';
-import logoNaotri from './components/logoNaotri.png';
-import trash from './components/trash.png';
-import trophy from './components/trophy.png';
-import shopping from './components/shopping.png';
 import bottle from './components/bottle.png';
 import robinet from './components/robinet.png';
 import totebag from './components/totebag.png';
@@ -23,28 +17,9 @@ import WorkInProgress from './components/WorkInProgress';
 import QuizResult from './components/QuizResult';
 import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
+import Slider from './components/Slider';
 import Fullscreen from './components/Fullscreen';
 import CollectValidation from './components/CollectValidation';
-
-const sliderItems = [
-  {
-    image: logoNaotri,
-    description: 'Trie tes déchets de manière ludique!',
-  },
-  {
-    image: trash,
-    description: 'Trouve les points de collecte les plus proches de chez toi !',
-  },
-  {
-    image: trophy,
-    description: 'Relève des défis et gagne des points!',
-  },
-  {
-    image: shopping,
-    description:
-      'Echange tes points contre des réductions dans tes enseignes préférées!',
-  },
-];
 
 const quizQuestions = [
   {
@@ -110,12 +85,7 @@ function App() {
               <Fullscreen setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/slider">
-              {sliderItems.map((sliderItem) => (
-                <SliderComponent {...sliderItem} />
-              ))}
-              <Link to="/quiz0">
-                <button type="button">Quiz1</button>
-              </Link>
+              <Slider />
             </Route>
             <Route exact path="/quiz0">
               <Quiz {...quizQuestions[0]} setShowFooter={setShowFooter} />
