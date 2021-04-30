@@ -18,31 +18,31 @@ function Home() {
               alt="Recycle Bin"
               className="recycle-bin"
             />
-            <h1>Points de Dépots</h1>
+            <p>Points de Dépots</p>
           </div>
         </Link>
         <Link to="/shop" style={{ textDecoration: 'none' }}>
           <div className="menu-enseignes">
             <img src={storeIcon} alt="Stores" className="stores" />
-            <h1>Enseignes</h1>
+            <p>Enseignes</p>
           </div>
         </Link>
         <Link to="/profile" style={{ textDecoration: 'none' }}>
           <div className="menu-espace">
             <img src={profileIcon} alt="Profil" className="profil" />
-            <h1>Mon espace</h1>
+            <p>Mon espace</p>
           </div>
         </Link>
         <Link to="/challenge" style={{ textDecoration: 'none' }}>
           <div className="menu-defi">
             <img src={trophyIcon} alt="Challenge" className="challange" />
-            <h1>Défi !</h1>
+            <p>Défi !</p>
           </div>
         </Link>
         <Link to="/about" style={{ textDecoration: 'none' }}>
           <div className="a-propos">
             <img src={aboutIcon} alt="About" className="about" />
-            <h1>À propos</h1>
+            <p>À propos</p>
           </div>
         </Link>
       </div>

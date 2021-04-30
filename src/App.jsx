@@ -25,7 +25,7 @@ const quizQuestions = [
   {
     key: 0,
     id: 0,
-    name: 'Question1',
+    name: 'Question 1',
     question: 'Quand tu as soif tu...',
     image3: bottle,
     answer1: '...prends ta gourde et la remplis au robinet ?',
@@ -37,7 +37,7 @@ const quizQuestions = [
   {
     key: 1,
     id: 1,
-    name: 'Question2',
+    name: 'Question 2',
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
@@ -49,7 +49,7 @@ const quizQuestions = [
   {
     key: 2,
     id: 2,
-    name: 'Question3',
+    name: 'Question 3',
     question: 'Quand tes vêtements ne sont plus à ton goût tu...',
     image3: benne,
     answer2: '...les jettes, bon débarras !',
@@ -88,16 +88,16 @@ function App() {
               <Slider />
             </Route>
             <Route exact path="/quiz0">
-              <Quiz {...quizQuestions[0]} />
+              <Quiz {...quizQuestions[0]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz1">
-              <Quiz {...quizQuestions[1]} />
+              <Quiz {...quizQuestions[1]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz2">
-              <Quiz {...quizQuestions[2]} />
+              <Quiz {...quizQuestions[2]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quizResult">
-              <QuizResult />
+              <QuizResult setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/login">
               <WorkInProgress />
