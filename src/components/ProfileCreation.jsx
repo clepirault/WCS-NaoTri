@@ -20,6 +20,13 @@ function ProfileCreation() {
     localStorage.setItem('birthday', birthday);
     localStorage.setItem('email', email);
     localStorage.setItem('avatar', avatar);
+    localStorage.setItem('xp', localStorage.getItem('result'));
+    localStorage.setItem('sp', localStorage.getItem('result'));
+    if (localStorage.getItem('xp') === '30') {
+      localStorage.setItem('Level', '2');
+    } else {
+      localStorage.setItem('Level', '1');
+    }
   };
   const handleClicAvatar = (avatarValue) => {
     setAvatar(avatarValue);
