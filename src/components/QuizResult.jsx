@@ -7,7 +7,6 @@ function QuizResult(props) {
   const score1 = localStorage.getItem('Question 1') || '0';
   const score2 = localStorage.getItem('Question 2') || '0';
   const score3 = localStorage.getItem('Question 3') || '0';
-  console.log(score1, score2, score3);
   const result =
     parseInt(score1, 10) + parseInt(score2, 10) + parseInt(score3, 10);
   const resultToScore = result / 10;
