@@ -58,7 +58,6 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
     const todayDate = formatDate(new Date());
     const depotPoint = [];
     depotPoint[0] = `${todayDate} : ${depositPoint.type} - ${depositPoint.city}`;
-    // eslint-disable-next-line no-alert
     if (localStorage.getItem('depotHistory') === null) {
       localStorage.setItem('depotHistory', JSON.stringify(depotPoint));
     } else {
@@ -66,8 +65,7 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
       history.unshift(depotPoint[0]);
       localStorage.setItem('depotHistory', JSON.stringify(history));
     }
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < levels.length; i++) {
+    for (let i = 0; i < levels.length; i += 1) {
       if (
         (previousXp < levels[levels.length] &&
           newXp >= levels[levels.length]) ||
