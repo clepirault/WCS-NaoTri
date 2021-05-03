@@ -20,6 +20,7 @@ import ProfileCreation from './components/ProfileCreation';
 import Slider from './components/Slider';
 import Fullscreen from './components/Fullscreen';
 import CollectValidation from './components/CollectValidation';
+import UserProfile from './components/UserProfile';
 
 const quizQuestions = [
   {
@@ -123,8 +124,11 @@ function App() {
             <Route exact path="/shop">
               <WorkInProgress />
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/profileCreation">
               <ProfileCreation />
+            </Route>
+            <Route exact path="/userProfile">
+              <UserProfile />
             </Route>
             <Route exact path="/challenge">
               <WorkInProgress />

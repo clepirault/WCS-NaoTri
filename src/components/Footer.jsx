@@ -20,7 +20,7 @@ function Footer() {
         <Link to="/shop">
           <img src={shopIcon} alt="Shops Icon" />
         </Link>
-        <Link to="/profile">
+        <Link to="/userProfile">
           <img src={userIcon} alt="User Icon" />
         </Link>
         <Link to="/tips">

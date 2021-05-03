@@ -42,8 +42,11 @@ function TemporaryLinks() {
         <button type="button">shop</button>
       </Link>
       <p />
-      <Link to="/profile">
-        <button type="button">profile</button>
+      <Link to="/profileCreation">
+        <button type="button">profileCreation</button>
+      </Link>
+      <Link to="/userProfile">
+        <button type="button">userProfile</button>
       </Link>
       <p />
       <Link to="/tips">

@@ -27,12 +27,12 @@ function QuizResult(props) {
         <h3>Votre score : {resultToScore}/3</h3>
       </div>
       <p className="quizScoreMessage">
-        {result === 3
+        {resultToScore === 3
           ? 'Super ! tu as réussi. Rejoins-nous vite pour collecter tes premiers points.'
           : "Tu peux mieux faire. Rejoins-nous vite pour t'améliorer !"}
       </p>
       <div className="btn-final">
-        <Link to="/profile">
+        <Link to="/profileCreation">
           <button className="btn-quiz" type="button" onClick={handleClic}>
             Continuer
           </button>
