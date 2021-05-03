@@ -65,6 +65,7 @@ const quizQuestions = [
 const headerDepot = `Dépôt`;
 
 function App() {
+  const username = localStorage.getItem('pseudo');
   const [showFooter, setShowFooter] = useState(true);
   const [depositPoint, setDepositPoint] = useState({
     type: '',
@@ -128,6 +129,7 @@ function App() {
               <ProfileCreation />
             </Route>
             <Route exact path="/userProfile">
+              <Header titre={username} />
               <UserProfile />
             </Route>
             <Route exact path="/challenge">
