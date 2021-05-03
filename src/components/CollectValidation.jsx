@@ -52,8 +52,7 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
       history.unshift(depotPoint[0]);
       localStorage.setItem('depotHistory', JSON.stringify(history));
     }
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < levels.length; i++) {
+    for (let i = 0; i < levels.length; i += 1) {
       if (
         (previousXp < levels[levels.length] &&
           newXp >= levels[levels.length]) ||
