@@ -45,7 +45,6 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
     localStorage.setItem('sp', newSp);
     const depotPoint = [];
     depotPoint[0] = `${depositPoint.type}, ${depositPoint.city}`;
-    // eslint-disable-next-line no-alert
     if (localStorage.getItem('depotHistory') === null) {
       localStorage.setItem('depotHistory', JSON.stringify(depotPoint));
     } else {
