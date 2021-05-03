@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import './UserProfile.css';
 import level1 from '../images/levelBadges/1.png';
@@ -17,7 +15,7 @@ import UserProfileProgressBar from './UserProfileProgressBar';
 const UserProfile = () => {
   const levels = [0, 30, 280, 580, 930, 1330, 1780, 2280];
   const srcAvatar = localStorage.getItem('avatar');
-  const xp = localStorage.getItem('xp');
+  const xp = parseInt(localStorage.getItem('xp'), 10);
   const sp = localStorage.getItem('sp');
   const level = parseInt(localStorage.getItem('Level'), 10);
   const xpLevel = levels[level - 1];
@@ -35,7 +33,7 @@ const UserProfile = () => {
           <div className="xp">
             <p>Prochain level : {xpNextLevel - xp} xp</p>
             <UserProfileProgressBar
-              completed={((xp - xpLevel) * 100) / xpNextLevel}
+              completed={((xp - xpLevel) * 100) / (xpNextLevel - xpLevel)}
               currentxp={xp - xpLevel}
             />
           </div>

@@ -5,11 +5,10 @@ import injectStyle from './injectStyle';
 const UserProfileProgressBar = (props) => {
   const { completed, currentxp } = props;
 
-  // eslint-disable-next-line no-unused-vars
   const keyframesStyle = `
   @-webkit-keyframes grow {
     0%   { width: 0px }
-    ${completed}% { width: ${completed}% }
+    100% { width: ${completed}% }
   }
 `;
   injectStyle(keyframesStyle);
