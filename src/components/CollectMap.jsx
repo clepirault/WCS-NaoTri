@@ -397,6 +397,7 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
 
   const history = useHistory();
   const handleDeposit = (typeDechet, address, commune, latitude, longitude) => {
+    console.log(typeDechet, address, commune, latitude, longitude);
     setDepositPoint({
       type: typeDechet,
       adr: address,
@@ -693,7 +694,20 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        'Compost',
+                        eachCompost.fields.adresse,
+                        eachCompost.fields.lieu,
+                        eachCompost.geometry.coordinates[1],
+                        eachCompost.geometry.coordinates[0]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}
@@ -724,7 +738,20 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        'Compost',
+                        eachDechette.fields.adresse,
+                        eachDechette.fields.commune,
+                        eachDechette.fields.location[0],
+                        eachDechette.fields.location[1]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}
