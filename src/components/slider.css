@@ -22,14 +22,21 @@ h1 {
 }
 
 .buttons {
-  margin-top: 60px;
+  margin-top: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-content: center;
   width: 30px;
-  margin-right: 20px;
-  margin-left: 20px;
+}
+
+.quiz-btn {
+  width: 80px;
+  height: 40px;
+  margin-left: 15px;
+  border-radius: 10px;
+  background-color: #46dc7b;
+  border: none;
 }
 
 .arrow-left {

@@ -15,7 +15,9 @@ function ChildSlider(props) {
       </button>
       {props.currentSlide === 4 ? (
         <Link to="/quiz0">
-          <button type="button">Quiz !</button>
+          <button type="button" className="quiz-btn">
+            Quiz !
+          </button>
         </Link>
       ) : (
         <button
