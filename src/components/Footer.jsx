@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Footer.css';
 import homeIcon from '../images/homeIconfull.svg';
 import ideaIcon from '../images/ideaIconfull.svg';
-import shopIcon from '../images/shopIconfull.svg';
 import locationIcon from '../images/locationIconfull.svg';
 import userIcon from '../images/profileIconfull.svg';
 
@@ -17,9 +16,9 @@ function Footer() {
         <Link to="/map">
           <img src={locationIcon} alt="Location Icon" />
         </Link>
-        <Link to="/shop">
+        {/* <Link to="/shop">
           <img src={shopIcon} alt="Shops Icon" />
-        </Link>
+        </Link> */}
         <Link to="/profile">
           <img src={userIcon} alt="User Icon" />
         </Link>
