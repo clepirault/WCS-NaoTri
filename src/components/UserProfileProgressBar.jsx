@@ -14,7 +14,7 @@ const UserProfileProgressBar = (props) => {
   injectStyle(keyframesStyle);
 
   const containerStyles = {
-    height: 20,
+    height: 30,
     width: '65vw',
     backgroundColor: '#fff',
     borderRadius: 50,
