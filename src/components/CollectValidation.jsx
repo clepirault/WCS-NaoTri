@@ -30,6 +30,18 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
     return Math.floor(d);
   }
 
+  function formatDate(date) {
+    const d = new Date(date);
+    let month = `${d.getMonth() + 1}`;
+    let day = `${d.getDate()}`;
+    const year = d.getFullYear();
+
+    if (month.length < 2) month = `0${month}`;
+    if (day.length < 2) day = `0${day}`;
+
+    return [year, month, day].join('-');
+  }
+
   // eslint-disable-next-line no-unused-vars
   const [dist, setDist] = useState(
     Distance(userLoc.lat, userLoc.lng, depositPoint.lat, depositPoint.lng)
@@ -43,8 +55,9 @@ const CollectValidation = ({ userLoc, depositPoint }) => {
     const newSp = previousSp + xpDepot;
     localStorage.setItem('xp', newXp);
     localStorage.setItem('sp', newSp);
+    const todayDate = formatDate(new Date());
     const depotPoint = [];
-    depotPoint[0] = `${depositPoint.type}, ${depositPoint.city}`;
+    depotPoint[0] = `${todayDate} : ${depositPoint.type} - ${depositPoint.city}`;
     if (localStorage.getItem('depotHistory') === null) {
       localStorage.setItem('depotHistory', JSON.stringify(depotPoint));
     } else {
