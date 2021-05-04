@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+} from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { useHistory } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
@@ -27,23 +33,6 @@ const profilUser = {
   latitude: 47.207048,
   longitude: -1.5462102,
   latLong: [47.207048, -1.5462102],
-};
-
-const dataMaps = {
-  tilejson: '2.0.0',
-  name: 'Streets',
-  attribution:
-    '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-  minzoom: 0,
-  maxzoom: 22,
-  bounds: [-180, -85.0511, 180, 85.0511],
-  format: 'png',
-  type: 'baselayer',
-  center: [0, 0, 0],
-  color: 'rgba(252, 247, 229, 1)',
-  tiles: [
-    'https://api.maptiler.com/maps/basic/256/{z}/{x}/{y}.png?key=5YI0xywRGZyB2zqWnifQ',
-  ],
 };
 
 // eslint-disable-next-line react/prop-types
@@ -448,6 +437,38 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
         </div>
       ) : (
         <MapContainer center={center} zoom={ZOOM_LEVEL} tap={false}>
+          <LayersControl position="bottomleft">
+            <LayersControl.BaseLayer name="Colorful">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Transports dark">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=dc257dbcfad448daa0ec83a930eb1425"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Transports">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=dc257dbcfad448daa0ec83a930eb1425"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Pistes cyclables">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked name="Default">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            </LayersControl.BaseLayer>
+          </LayersControl>
           {buttonFilter ? (
             <div className="button-position">
               <button
@@ -593,11 +614,6 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
               </div>
             </div>
           )}
-
-          <TileLayer
-            url={dataMaps.tiles[0]}
-            attribution={dataMaps.attribution}
-          />
           <Marker position={center} icon={pins.bluePin}>
             <Popup>
               <p>{profilUser.name}</p>
