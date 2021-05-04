@@ -397,7 +397,6 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
 
   const history = useHistory();
   const handleDeposit = (typeDechet, address, commune, latitude, longitude) => {
-    console.log(typeDechet, address, commune, latitude, longitude);
     setDepositPoint({
       type: typeDechet,
       adr: address,
