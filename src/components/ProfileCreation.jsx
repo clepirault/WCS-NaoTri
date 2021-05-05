@@ -74,9 +74,9 @@ function ProfileCreation() {
         </div>
       </div>
       <div className="infos">
-        <form className="pseudo">
-          <label htmlFor="pseudo">
-            Pseudo:
+        <form className="pseudoContainer">
+          <label htmlFor="pseudo" className="pseudo">
+            <p>Pseudo:</p>
             <input
               type="text"
               name="pseudo"
@@ -87,9 +87,9 @@ function ProfileCreation() {
             />
           </label>
         </form>
-        <form className="birthday">
-          <label htmlFor="birthday">
-            Date de naissance:
+        <form className="birthdayContainer">
+          <label htmlFor="birthday" className="birthday">
+            <p>Date de naissance:</p>
             <input
               type="date"
               name="birthday"
@@ -99,14 +99,14 @@ function ProfileCreation() {
             />
           </label>
         </form>
-        <form className="email">
-          <label htmlFor="email">
-            Email :
+        <form className="emailContainer">
+          <label htmlFor="email" className="email">
+            <p>Email :</p>
             <input
               type="email"
               name="email"
               id="email"
-              placeholder="fred.pierrafeu@naotri.com"
+              placeholder="naotri@mail.com"
               onChange={handleChangeEmail}
               value={email}
             />
