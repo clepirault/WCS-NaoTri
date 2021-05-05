@@ -1,4 +1,3 @@
-/* import react from 'react'; */
 import './good-habits.css';
 import fullgarbage from './fullgarbage.svg';
 import recycleplasticbottle from './recycleplasticbottle.svg';
