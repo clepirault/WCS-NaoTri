@@ -20,7 +20,10 @@
   border-radius: 50%;
   width: 90px;
   border: solid rgb(160, 154, 154);
-  margin: 200px;
+}
+
+.picture img{
+  margin: 10px;
 }
 
 .picture p {
@@ -37,7 +40,7 @@
 .infos {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .pseudo {
@@ -56,6 +59,10 @@
   text-align: center;
   width: 185px;
   border-radius: 10px;
+  color: rgb(139, 122, 122);
+  outline: none;
+  border: solid rgb(139, 122, 122);
+  background-color: white;
 }
 
 .birthday {
@@ -81,6 +88,9 @@
   text-align: center;
   border-radius: 10px;
   padding: 1px;
+  outline: none;
+  border: solid rgb(139, 122, 122);
+  background-color: white;
 }
 
 .email {
@@ -104,6 +114,9 @@
   width: 185px;
   border-radius: 10px;
   color: rgb(116, 88, 88);
+  outline: none;
+  border: solid rgb(139, 122, 122);
+  background-color: white;
 }
 
 .emailContainer,
@@ -114,6 +127,11 @@
 
 .submit {
   display: flex;
-  margin-top: 20px;
+  margin-top: 40px;
   justify-content: center;
+}
+
+.submit button{
+  background-color: #46dc7b;
+  border: solid rgb(139, 134, 134);
 }
