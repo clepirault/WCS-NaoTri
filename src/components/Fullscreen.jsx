@@ -7,6 +7,8 @@ import downArrow from '../images/down.gif';
 const msg1 = `Pour profiter d'une expérience plein écran, slidez jusqu'à faire disparaître la barre d'adresse :)`;
 const msg2 = `Puis cliquez sur continuer.`;
 
+const srcAvatar = localStorage.getItem('avatar');
+
 const Fullscreen = ({ setShowFooter }) => {
   useEffect(() => {
     setShowFooter(false);
@@ -26,7 +28,7 @@ const Fullscreen = ({ setShowFooter }) => {
         </div>
       </div>
       <div className="bottom">
-        <Link to="/home">
+        <Link to={srcAvatar === null ? '/slider' : '/home'}>
           <button type="button" className="bottomBtn">
             Continuer
           </button>

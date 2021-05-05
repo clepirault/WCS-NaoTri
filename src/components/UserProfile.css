@@ -1,3 +1,7 @@
+.UserProfile {
+  background-color: #e4dfdf;
+}
+
 .top {
   display: flex;
   justify-content: space-between;
@@ -77,4 +81,10 @@
   padding: 10px;
   margin: 10px;
   box-shadow: 1px 1px 2px grey inset;
+}
+
+.clearCache {
+  margin-top: 25%;
+  margin-bottom: 30%;
+  margin-left: 35%;
 }

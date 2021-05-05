@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './UserProfile.css';
 import level1 from '../images/levelBadges/1.png';
 import level2 from '../images/levelBadges/2.png';
@@ -13,6 +14,7 @@ import coins from '../images/coins.png';
 import UserProfileProgressBar from './UserProfileProgressBar';
 
 const UserProfile = () => {
+  const historyPush = useHistory();
   const levels = [0, 30, 280, 580, 930, 1330, 1780, 2280];
   const srcAvatar = localStorage.getItem('avatar');
   const xp = parseInt(localStorage.getItem('xp'), 10);
@@ -21,6 +23,12 @@ const UserProfile = () => {
   const xpLevel = levels[level - 1];
   const xpNextLevel = levels[level];
   const history = JSON.parse(localStorage.getItem('depotHistory'));
+
+  const handleReset = () => {
+    localStorage.clear();
+    historyPush.push('/');
+  };
+
   return (
     <div className="UserProfile">
       <div className="top">
@@ -94,6 +102,13 @@ const UserProfile = () => {
           </div>
         </>
       )}
+      <button
+        type="button"
+        className="clearCache"
+        onClick={() => handleReset()}
+      >
+        Reset application
+      </button>
     </div>
   );
 };

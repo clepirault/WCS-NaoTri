@@ -2,9 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import './profileCreation.css';
-// link sera utilisé plus tard
-// eslint-disable-next-line no-unused-vars
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import astronaut from '../images/astronaut.svg';
 import ninja from '../images/ninja.svg';
 import monster from '../images/monster.svg';
@@ -14,6 +12,7 @@ function ProfileCreation() {
   const [birthday, setBirthday] = useState('');
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
+  const history = useHistory();
 
   const handleClic = () => {
     localStorage.setItem('pseudo', pseudo);
@@ -27,6 +26,7 @@ function ProfileCreation() {
     } else {
       localStorage.setItem('Level', '1');
     }
+    history.push('/home');
   };
   const handleClicAvatar = (avatarValue) => {
     setAvatar(avatarValue);
@@ -51,6 +51,7 @@ function ProfileCreation() {
             src={ninja}
             name="avatar"
             alt="avatar1"
+            style={{ borderRadius: '50px' }}
             onClick={() => {
               handleClicAvatar(ninja);
             }}
