@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import levelUp from '../images/levelup.png';
+import './LevelUp.css';
+import levelUp from '../images/levelUpImage.png';
 
 const LevelUp = ({ setLevelUp }) => {
   return (
-    <div>
-      <p>Level Up Yaaaay!</p>
+    <div className="LevelUp">
+      <div>
+        <p>Tu viens de gagner un niveau !</p>
+        <p>
+          <em>Jayjayyyy !</em>
+        </p>
+      </div>
       <img src={levelUp} alt="levelup" style={{ width: '100%' }} />
       <button type="button" onClick={() => setLevelUp(false)}>
-        Top merci !
+        Top !
       </button>
     </div>
   );

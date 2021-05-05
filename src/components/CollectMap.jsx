@@ -400,6 +400,9 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
     history.push('/deposit');
   };
 
+  const srcAvatar = localStorage.getItem('avatar');
+  const pseudoUser = localStorage.getItem('pseudo');
+
   return (
     <div>
       {!center.loaded ? (
@@ -616,9 +619,13 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
           )}
           <Marker position={center} icon={pins.bluePin}>
             <Popup>
-              <p>{profilUser.name}</p>
-              <img className="frog" src={profilUser.avatar} alt="blue frog" />
-              <br /> DADADI DADADA !!!
+              <p style={{ textAlign: 'center' }}>{pseudoUser}</p>
+              <img
+                style={{ borderRadius: '50%' }}
+                className="frog"
+                src={srcAvatar}
+                alt="blue frog"
+              />
             </Popup>
           </Marker>
           <MarkerClusterGroup

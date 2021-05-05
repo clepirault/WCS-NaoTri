@@ -53,7 +53,9 @@ function Quiz(props) {
       <div className={active2 ? 'answers' : 'answers-on'}>
         <div>
           <img className="answer-image" src={image2} alt="image2" />
-          <label htmlFor="answer1">{answer1}</label>
+          <label htmlFor="answer1" className="label">
+            {answer1}
+          </label>
           <input
             type="radio"
             name={name}
@@ -67,7 +69,9 @@ function Quiz(props) {
       <div className={active ? 'answers' : 'answers-on'}>
         <div>
           <img className="answer-image" src={image3} alt="image3" />
-          <label htmlFor="answer2">{answer2}</label>
+          <label htmlFor="answer2" className="label">
+            {answer2}
+          </label>
           <input
             type="radio"
             name={name}
