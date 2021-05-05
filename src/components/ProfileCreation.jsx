@@ -51,7 +51,10 @@ function ProfileCreation() {
             src={ninja}
             name="avatar"
             alt="avatar1"
-            style={{ borderRadius: '50px' }}
+            style={{
+              borderRadius: '50px',
+              boxShadow: '0px 0px 10px 5px grey',
+            }}
             onClick={() => {
               handleClicAvatar(ninja);
             }}
@@ -82,7 +85,7 @@ function ProfileCreation() {
               type="text"
               name="pseudo"
               id="pseudo"
-              placeholder="Pierrafeu"
+              placeholder="Pseudo"
               onChange={handleChangePseudo}
               value={pseudo}
             />
