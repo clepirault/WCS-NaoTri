@@ -12,10 +12,10 @@ function ParentSlider(props) {
       {slideToShow.length <= 0 ? (
         <div>No more slides</div>
       ) : (
-        <div>
+        <div className="blocslider">
           <div className="Slider">{slideToShow[0].title}</div>
-          <img className="image" src={slideToShow[0].image} alt="imageSlider" />
-          <div>{slideToShow[0].description}</div>
+          <img className="logo" src={slideToShow[0].image} alt="imageSlider" />
+          <div className="description">{slideToShow[0].description}</div>
         </div>
       )}
       <br />
