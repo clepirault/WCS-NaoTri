@@ -81,7 +81,7 @@ function ProfileCreation() {
               type="text"
               name="pseudo"
               id="pseudo"
-              placeholder="Pierrafeu"
+              placeholder="Naotri"
               onChange={handleChangePseudo}
               value={pseudo}
             />
