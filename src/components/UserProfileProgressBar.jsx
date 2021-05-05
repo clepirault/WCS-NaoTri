@@ -7,14 +7,15 @@ const UserProfileProgressBar = (props) => {
 
   const keyframesStyle = `
   @-webkit-keyframes grow {
-    0%   { width: 0px }
+    0%   { opacity: 0; width: 0px }
+    10%  { opacity: 0 }
+    50%  { opacity: 1 }
     100% { width: ${completed}% }
-  }
 `;
   injectStyle(keyframesStyle);
 
   const containerStyles = {
-    height: 20,
+    height: 30,
     width: '65vw',
     backgroundColor: '#fff',
     borderRadius: 50,
