@@ -1,6 +1,12 @@
 .headerStyle {
   height: 80px;
   background-color: #46dc7b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .welcome {

@@ -31,9 +31,10 @@
   background-color: lightgrey;
 }
 
-.info {
+.infos {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 .pseudo {
@@ -44,7 +45,7 @@
 
 .submit {
   display:flex;
-  margin-top: 70px;
+  margin-top: 20px;
   justify-content: center;
  
 }
@@ -52,7 +53,9 @@
 .pseudo, .birthday, .email{
   margin-bottom: 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 #name {

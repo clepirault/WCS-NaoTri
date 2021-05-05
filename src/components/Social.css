@@ -9,12 +9,14 @@
   bottom: 75px;
   position: fixed;
   width: 100%;
-  background-color: #e4dfdf;
+  background-color: #e6e6e6;
 }
 
 .socialTitle {
   margin: 0;
   padding: 0;
+  animation-name: fade;
+  animation-duration: 2s;
 }
 
 .socialIcons {
@@ -26,5 +28,16 @@
 .socialIcons img{
   margin-right: 5px;
   width: 30px;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 

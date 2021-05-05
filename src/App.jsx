@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CollectMap from './components/CollectMap';
-import SliderComponent from './components/SliderComponent';
-
 import Quiz from './components/Quiz';
-import logoNaotri from './components/logoNaotri.png';
-import trash from './components/trash.png';
-import trophy from './components/trophy.png';
-import shopping from './components/shopping.png';
 import bottle from './components/bottle.png';
 import robinet from './components/robinet.png';
 import totebag from './components/totebag.png';
@@ -23,49 +17,32 @@ import WorkInProgress from './components/WorkInProgress';
 import QuizResult from './components/QuizResult';
 import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
+import Slider from './components/Slider';
 import Fullscreen from './components/Fullscreen';
-
-const sliderItems = [
-  {
-    image: logoNaotri,
-    description: 'Trie tes déchets de manière ludique!',
-  },
-  {
-    image: trash,
-    description: 'Trouve les points de collecte les plus proches de chez toi !',
-  },
-  {
-    image: trophy,
-    description: 'Relève des défis et gagne des points!',
-  },
-  {
-    image: shopping,
-    description:
-      'Echange tes points contre des réductions dans tes enseignes préférées!',
-  },
-];
+import CollectValidation from './components/CollectValidation';
+import UserProfile from './components/UserProfile';
 
 const quizQuestions = [
   {
     key: 0,
     id: 0,
-    name: 'Question1',
+    name: 'Question 1',
     question: 'Quand tu as soif tu...',
     image3: bottle,
     answer1: '...prends ta gourde et la remplis au robinet ?',
     value2: '0',
     image2: robinet,
     answer2: "...cours acheter une bouteille d'eau en plastique",
-    value1: '1',
+    value1: '10',
   },
   {
     key: 1,
     id: 1,
-    name: 'Question2',
+    name: 'Question 2',
     question: 'Quand tu vas faire les courses tu...',
     image2: totebag,
     answer1: '...utilises un cabas ou un tot bag',
-    value1: '1',
+    value1: '10',
     image3: plasticbag,
     answer2: '...achètes un sac plastique à chaque fois ?',
     value2: '0',
@@ -73,7 +50,7 @@ const quizQuestions = [
   {
     key: 2,
     id: 2,
-    name: 'Question3',
+    name: 'Question 3',
     question: 'Quand tes vêtements ne sont plus à ton goût tu...',
     image3: benne,
     answer2: '...les jettes, bon débarras !',
@@ -81,12 +58,26 @@ const quizQuestions = [
     image2: don,
     answer1:
       '...les déposes à une benne de recyclage ou les donnes à une association ?',
-    value1: '1',
+    value1: '10',
   },
 ];
 
+const headerDepot = `Dépôt`;
+
 function App() {
+  const username = localStorage.getItem('pseudo');
   const [showFooter, setShowFooter] = useState(true);
+  const [depositPoint, setDepositPoint] = useState({
+    type: '',
+    adr: '',
+    city: '',
+    lat: 0,
+    lng: 0,
+  });
+  const [userLoc, setUserLoc] = useState({
+    lat: 0,
+    lng: 0,
+  });
   return (
     <div className="App">
       <Router>
@@ -96,24 +87,19 @@ function App() {
               <Fullscreen setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/slider">
-              {sliderItems.map((sliderItem) => (
-                <SliderComponent {...sliderItem} />
-              ))}
-              <Link to="/quiz0">
-                <button type="button">Quiz1</button>
-              </Link>
+              <Slider setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz0">
-              <Quiz {...quizQuestions[0]} />
+              <Quiz {...quizQuestions[0]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz1">
-              <Quiz {...quizQuestions[1]} />
+              <Quiz {...quizQuestions[1]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quiz2">
-              <Quiz {...quizQuestions[2]} />
+              <Quiz {...quizQuestions[2]} setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/quizResult">
-              <QuizResult />
+              <QuizResult setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/login">
               <WorkInProgress />
@@ -124,13 +110,27 @@ function App() {
               <Social />
             </Route>
             <Route exact path="/map">
-              <CollectMap />
+              <CollectMap
+                setUserLoc={setUserLoc}
+                setDepositPoint={setDepositPoint}
+              />
+            </Route>
+            <Route exact path="/deposit">
+              <Header titre={headerDepot} />
+              <CollectValidation
+                userLoc={userLoc}
+                depositPoint={depositPoint}
+              />
             </Route>
             <Route exact path="/shop">
               <WorkInProgress />
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/profileCreation">
               <ProfileCreation />
+            </Route>
+            <Route exact path="/userProfile">
+              <Header titre={username} />
+              <UserProfile />
             </Route>
             <Route exact path="/challenge">
               <WorkInProgress />

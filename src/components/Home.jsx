@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import aboutIcon from '../images/aboutIcon.svg';
 import trophyIcon from '../images/trophyIcon.svg';
-import profileIcon from '../images/profileIcon.svg';
-import storeIcon from '../images/storeIcon.svg';
-import recycleBinIcon from '../images/recycleBinIcon.svg';
+import userIcon from '../images/profileIconfull.svg';
+// import recycleBinIcon from '../images/recycleBinIcon.svg';
+import locationIcon from '../images/locationIconfull.svg';
 
 function Home() {
   return (
@@ -13,36 +13,32 @@ function Home() {
       <div className="homeBloc">
         <Link to="/map" style={{ textDecoration: 'none' }}>
           <div className="menu-collecte">
-            <img
-              src={recycleBinIcon}
-              alt="Recycle Bin"
-              className="recycle-bin"
-            />
-            <h1>Points de Dépots</h1>
+            <img src={locationIcon} alt="Recycle Bin" className="recycle-bin" />
+            <p>Points de Dépots</p>
           </div>
         </Link>
-        <Link to="/shop" style={{ textDecoration: 'none' }}>
+        {/* <Link to="/shop" style={{ textDecoration: 'none' }}>
           <div className="menu-enseignes">
             <img src={storeIcon} alt="Stores" className="stores" />
-            <h1>Enseignes</h1>
+            <p>Enseignes</p>
           </div>
-        </Link>
+            </Link> */}
         <Link to="/profile" style={{ textDecoration: 'none' }}>
           <div className="menu-espace">
-            <img src={profileIcon} alt="Profil" className="profil" />
-            <h1>Mon espace</h1>
+            <img src={userIcon} alt="Profil" className="profil" />
+            <p>Mon espace</p>
           </div>
         </Link>
         <Link to="/challenge" style={{ textDecoration: 'none' }}>
           <div className="menu-defi">
             <img src={trophyIcon} alt="Challenge" className="challange" />
-            <h1>Défi !</h1>
+            <p>Défi !</p>
           </div>
         </Link>
         <Link to="/about" style={{ textDecoration: 'none' }}>
           <div className="a-propos">
             <img src={aboutIcon} alt="About" className="about" />
-            <h1>À propos</h1>
+            <p>À propos</p>
           </div>
         </Link>
       </div>

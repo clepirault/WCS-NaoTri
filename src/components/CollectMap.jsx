@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+} from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { useHistory } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import './CollectMap.css';
@@ -28,24 +35,8 @@ const profilUser = {
   latLong: [47.207048, -1.5462102],
 };
 
-const dataMaps = {
-  tilejson: '2.0.0',
-  name: 'Streets',
-  attribution:
-    '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-  minzoom: 0,
-  maxzoom: 22,
-  bounds: [-180, -85.0511, 180, 85.0511],
-  format: 'png',
-  type: 'baselayer',
-  center: [0, 0, 0],
-  color: 'rgba(252, 247, 229, 1)',
-  tiles: [
-    'https://api.maptiler.com/maps/basic/256/{z}/{x}/{y}.png?key=5YI0xywRGZyB2zqWnifQ',
-  ],
-};
-
-const CollectMap = () => {
+// eslint-disable-next-line react/prop-types
+const CollectMap = ({ setUserLoc, setDepositPoint }) => {
   const [center, setCenter] = useState({
     loaded: false,
     lat: profilUser.latitude,
@@ -393,6 +384,22 @@ const CollectMap = () => {
     handleFilterChange(state);
   };
 
+  const history = useHistory();
+  const handleDeposit = (typeDechet, address, commune, latitude, longitude) => {
+    setDepositPoint({
+      type: typeDechet,
+      adr: address,
+      city: commune,
+      lat: latitude,
+      lng: longitude,
+    });
+    setUserLoc({
+      lat: center.lat,
+      lng: center.lng,
+    });
+    history.push('/deposit');
+  };
+
   return (
     <div>
       {!center.loaded ? (
@@ -429,7 +436,39 @@ const CollectMap = () => {
           </div>
         </div>
       ) : (
-        <MapContainer center={center} zoom={ZOOM_LEVEL}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} tap={false}>
+          <LayersControl position="bottomleft">
+            <LayersControl.BaseLayer name="Colorful">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Transports dark">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=dc257dbcfad448daa0ec83a930eb1425"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Transports">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=dc257dbcfad448daa0ec83a930eb1425"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Pistes cyclables">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer checked name="Default">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            </LayersControl.BaseLayer>
+          </LayersControl>
           {buttonFilter ? (
             <div className="button-position">
               <button
@@ -575,11 +614,6 @@ const CollectMap = () => {
               </div>
             </div>
           )}
-
-          <TileLayer
-            url={dataMaps.tiles[0]}
-            attribution={dataMaps.attribution}
-          />
           <Marker position={center} icon={pins.bluePin}>
             <Popup>
               <p>{profilUser.name}</p>
@@ -631,7 +665,20 @@ const CollectMap = () => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        eachColumn.fields.type_dechet,
+                        eachColumn.fields.adresse,
+                        eachColumn.fields.commune,
+                        eachColumn.fields.geo_shape.coordinates[1],
+                        eachColumn.fields.geo_shape.coordinates[0]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}
@@ -662,7 +709,20 @@ const CollectMap = () => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        'Compost',
+                        eachCompost.fields.adresse,
+                        eachCompost.fields.lieu,
+                        eachCompost.geometry.coordinates[1],
+                        eachCompost.geometry.coordinates[0]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}
@@ -693,7 +753,20 @@ const CollectMap = () => {
                   >
                     Y aller
                   </button>
-                  <button type="button">Déposer</button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeposit(
+                        'Compost',
+                        eachDechette.fields.adresse,
+                        eachDechette.fields.commune,
+                        eachDechette.fields.location[0],
+                        eachDechette.fields.location[1]
+                      )
+                    }
+                  >
+                    Déposer
+                  </button>
                 </Popup>
               </Marker>
             ))}
