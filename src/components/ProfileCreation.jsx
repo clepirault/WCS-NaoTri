@@ -1,18 +1,26 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './profileCreation.css';
 import { useHistory } from 'react-router-dom';
 import astronaut from '../images/astronaut.svg';
 import ninja from '../images/ninja.svg';
 import monster from '../images/monster.svg';
 
-function ProfileCreation() {
+function ProfileCreation(props) {
   const [pseudo, setPseudo] = useState('');
   const [birthday, setBirthday] = useState('');
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
   const history = useHistory();
+
+  useEffect(() => {
+    props.setShowFooter(false);
+    return () => {
+      props.setShowFooter(true);
+    };
+  }, []);
 
   const handleClic = () => {
     localStorage.setItem('pseudo', pseudo);
@@ -51,7 +59,10 @@ function ProfileCreation() {
             src={ninja}
             name="avatar"
             alt="avatar1"
-            style={{ borderRadius: '50px' }}
+            style={{
+              borderRadius: '50%',
+              boxShadow: `${avatar === ninja ? '0px 0px 10px 5px grey' : ''}`,
+            }}
             onClick={() => {
               handleClicAvatar(ninja);
             }}
@@ -60,6 +71,12 @@ function ProfileCreation() {
             src={astronaut}
             name="avatar"
             alt="avatar2"
+            style={{
+              borderRadius: '50%',
+              boxShadow: `${
+                avatar === astronaut ? '0px 0px 10px 5px grey' : ''
+              }`,
+            }}
             onClick={() => {
               handleClicAvatar(astronaut);
             }}
@@ -68,6 +85,10 @@ function ProfileCreation() {
             src={monster}
             name="avatar"
             alt="avatar3"
+            style={{
+              borderRadius: '50%',
+              boxShadow: `${avatar === monster ? '0px 0px 10px 5px grey' : ''}`,
+            }}
             onClick={() => {
               handleClicAvatar(monster);
             }}
@@ -75,22 +96,22 @@ function ProfileCreation() {
         </div>
       </div>
       <div className="infos">
-        <form className="pseudo">
-          <label htmlFor="pseudo">
-            Pseudo:
+        <form className="pseudoContainer">
+          <label htmlFor="pseudo" className="pseudo">
+            <p>Pseudo:</p>
             <input
               type="text"
               name="pseudo"
               id="pseudo"
-              placeholder="Pierrafeu"
+              placeholder="Pseudo"
               onChange={handleChangePseudo}
               value={pseudo}
             />
           </label>
         </form>
-        <form className="birthday">
-          <label htmlFor="birthday">
-            Date de naissance:
+        <form className="birthdayContainer">
+          <label htmlFor="birthday" className="birthday">
+            <p>Date de naissance:</p>
             <input
               type="date"
               name="birthday"
@@ -100,14 +121,14 @@ function ProfileCreation() {
             />
           </label>
         </form>
-        <form className="email">
-          <label htmlFor="email">
-            Email :
+        <form className="emailContainer">
+          <label htmlFor="email" className="email">
+            <p>Email :</p>
             <input
               type="email"
               name="email"
               id="email"
-              placeholder="fred.pierrafeu@naotri.com"
+              placeholder="naotri@mail.com"
               onChange={handleChangeEmail}
               value={email}
             />

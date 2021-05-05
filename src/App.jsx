@@ -131,7 +131,7 @@ function App() {
               <WorkInProgress />
             </Route>
             <Route exact path="/profileCreation">
-              <ProfileCreation />
+              <ProfileCreation setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/userProfile">
               <Header titre={username} />
