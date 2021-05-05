@@ -125,3 +125,7 @@ input {
 .quizScore h3 {
   font-size: 30px;
 }
+
+.giphy-embed {
+  margin-top: 20px;
+}
