@@ -51,6 +51,7 @@ function ProfileCreation() {
             src={ninja}
             name="avatar"
             alt="avatar1"
+            style={{ borderRadius: '50px' }}
             onClick={() => {
               handleClicAvatar(ninja);
             }}
