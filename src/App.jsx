@@ -21,6 +21,7 @@ import Fullscreen from './components/Fullscreen';
 import CollectValidation from './components/CollectValidation';
 import UserProfile from './components/UserProfile';
 import GoodHabits from './components/good-habits';
+import AboutUs from './components/AboutUs';
 
 const quizQuestions = [
   {
@@ -65,6 +66,8 @@ const quizQuestions = [
 const headerDepot = `Dépôt`;
 
 const headerGoodHabits = `Le saviez-vous ?`;
+
+const headerAboutUs = `A propos`;
 
 function App() {
   const username = localStorage.getItem('pseudo');
@@ -142,7 +145,8 @@ function App() {
               <GoodHabits />
             </Route>
             <Route exact path="/about">
-              <WorkInProgress />
+              <Header titre={headerAboutUs} />
+              <AboutUs />
             </Route>
           </Switch>
         </div>
