@@ -2,34 +2,29 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import React from 'react';
+import './slider.css';
 
 function ChildSlider(props) {
   return (
-    <div>
+    <div className="buttons">
       <button
         type="button"
         onClick={() => props.getButtonStatus('Revenir', props.currentSlide)}
       >
-        Revenir
-      </button>
-      <button
-        type="button"
-        onClick={() =>
-          props.getButtonStatus('Revoir du début', props.currentSlide)
-        }
-      >
-        Revoir du début
+        <div className="arrow-left" />
       </button>
       {props.currentSlide === 4 ? (
         <Link to="/quiz0">
-          <button type="button">QUIZ</button>
+          <button type="button" className="quiz-btn">
+            Quiz !
+          </button>
         </Link>
       ) : (
         <button
           type="button"
           onClick={() => props.getButtonStatus('Suivant', props.currentSlide)}
         >
-          Suivant
+          <div className="arrow-right" />
         </button>
       )}
     </div>
