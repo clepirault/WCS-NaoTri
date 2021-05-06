@@ -1,11 +1,10 @@
-
-
 .Naotri {
   background-color: #46dc7b;
   color: rgb(102, 95, 95);
   margin: 0px;
   height: 70px;
   justify-content: center;
+  text-align: center;
   font-size: 25px;
   padding-top: 30px;
 }
@@ -16,61 +15,133 @@
   align-items: center;
   padding-top: 10px;
 }
+
 .avatar {
   border-radius: 50%;
   width: 90px;
   border: solid rgb(160, 154, 154);
 }
 
+.picture img{
+  margin: 10px;
+  width: 80px;
+}
+
 .picture p {
   border: solid rgb(194, 190, 190);
+  border-radius: 15px;
   color: #3bb465;
-  width: 35%;
+  background-color: #d2cece;
+  width: 50%;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 15px;
   background-color: lightgrey;
 }
 
 .infos {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .pseudo {
-  margin-top: 20px;
-}
-
-
-
-.submit {
-  display:flex;
-  margin-top: 20px;
-  justify-content: center;
- 
-}
-
-.pseudo, .birthday, .email{
-  margin-bottom: 50px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  height: 80px;
 }
 
-#name {
-  width: 160px;
+.pseudo input {
+  height: 25px;
+  text-align: center;
+  width: 185px;
   border-radius: 10px;
-}
-#date {
   color: rgb(139, 122, 122);
-  width: 160px;
+  outline: none;
+  border: solid rgb(139, 122, 122);
+  background-color: white;
+}
+
+.birthday {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  height: 80px;
+}
+
+.birthday p {
+  font-size: 19px;
+}
+
+.birthday input {
+  height: 25px;
+  text-align: center;
+  color: rgb(139, 122, 122);
+  width: 185px;
   text-align: center;
   border-radius: 10px;
+  padding: 1px;
+  outline: none;
+  border: solid rgb(139, 122, 122);
+  background-color: white;
 }
 
-#email {
-  width: 160px;
+.email {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  height: 80px;
+}
+
+.email p {
+  font-size: 19px;
+}
+
+.email input {
+  height: 25px;
+  text-align: center;
+  width: 185px;
   border-radius: 10px;
+  color: rgb(116, 88, 88);
+  outline: none;
+  border: solid rgb(139, 122, 122);
+  background-color: white;
 }
 
+.emailContainer,
+.pseudoContainer,
+.birthdayContainer {
+  margin-top: 10px;
+}
+
+.submit {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.submit button{
+  margin-top: 5px;
+  margin-bottom: 30px;
+  height: 50px;
+  width: 200px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #46dc7b;
+  font-size: 16px;
+  font-weight: 500;
+}

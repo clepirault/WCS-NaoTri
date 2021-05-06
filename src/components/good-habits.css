@@ -1,0 +1,20 @@
+.goodHabit {
+  height: 80vh;
+  overflow: scroll;
+}
+
+.goodHabit div {
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  padding: 0.5rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.goodHabit h2{
+  text-align: center;
+}

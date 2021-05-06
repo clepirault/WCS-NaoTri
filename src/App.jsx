@@ -10,12 +10,10 @@ import don from './components/don.png';
 import benne from './components/benne.png';
 import './App.css';
 import Footer from './components/Footer';
-import Social from './components/Social';
 import Home from './components/Home';
 import Header from './components/Header';
-import WorkInProgress from './components/WorkInProgress';
+import ReglesDuJeu from './components/ReglesDuJeu';
 import QuizResult from './components/QuizResult';
-import TemporaryLinks from './components/TemporaryLinks';
 import ProfileCreation from './components/ProfileCreation';
 import Slider from './components/Slider';
 import Fullscreen from './components/Fullscreen';
@@ -23,6 +21,8 @@ import CollectValidation from './components/CollectValidation';
 import UserProfile from './components/UserProfile';
 import Shop from './components/Shop';
 import ShopSPExchange from './components/ShopSPExchange';
+import GoodHabits from './components/good-habits';
+import AboutUs from './components/AboutUs';
 
 const quizQuestions = [
   {
@@ -67,6 +67,10 @@ const quizQuestions = [
 const headerDepot = `Dépôt`;
 const headerSP = `Conversion enseigne`;
 
+const headerGoodHabits = `Le saviez-vous ?`;
+
+const headerAboutUs = `A propos`;
+
 function App() {
   const username = localStorage.getItem('pseudo');
   const [showFooter, setShowFooter] = useState(true);
@@ -107,13 +111,9 @@ function App() {
             <Route exact path="/quizResult">
               <QuizResult setShowFooter={setShowFooter} />
             </Route>
-            <Route exact path="/login">
-              <WorkInProgress />
-            </Route>
             <Route exact path="/home">
               <Header />
               <Home />
-              <Social />
             </Route>
             <Route exact path="/map">
               <CollectMap
@@ -136,20 +136,23 @@ function App() {
               <ShopSPExchange shop={shop} />
             </Route>
             <Route exact path="/profileCreation">
-              <ProfileCreation />
+              <ProfileCreation setShowFooter={setShowFooter} />
             </Route>
             <Route exact path="/userProfile">
               <Header titre={username} />
               <UserProfile />
             </Route>
-            <Route exact path="/challenge">
-              <WorkInProgress />
+            <Route exact path="/regles">
+              <Header />
+              <ReglesDuJeu />
             </Route>
             <Route exact path="/tips">
-              <TemporaryLinks />
+              <Header titre={headerGoodHabits} />
+              <GoodHabits />
             </Route>
             <Route exact path="/about">
-              <WorkInProgress />
+              <Header titre={headerAboutUs} />
+              <AboutUs />
             </Route>
           </Switch>
         </div>

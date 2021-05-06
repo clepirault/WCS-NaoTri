@@ -1,0 +1,18 @@
+.rules-container {
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  height: 120vh;
+  padding: 10px;
+  background-color: #e6e6e6;
+}
+
+.rules-container img {
+  margin-top: 20px;
+  width: 80px;
+  height: 80px;
+}
+
+.punder {
+  background-color: #46dc7b;
+}

@@ -26,6 +26,25 @@ function QuizResult(props) {
       <div className="quizScore">
         <h3>Votre score : {resultToScore}/3</h3>
       </div>
+      <iframe
+        title="gif1"
+        src={(() => {
+          switch (resultToScore) {
+            case 3:
+              return 'https://giphy.com/embed/3oz8xAFtqoOUUrsh7W';
+            case 2:
+              return 'https://giphy.com/embed/l1J9xV815LOOTUju0';
+            case 1:
+              return 'https://giphy.com/embed/9xijGdDIMovchalhxN';
+            default:
+              return 'https://giphy.com/embed/xkPyw3UXrSGAp4UBTZ';
+          }
+        })()}
+        width="360"
+        height="200"
+        frameBorder="0"
+        className="giphy-embed"
+      />
       <p className="quizScoreMessage">
         {resultToScore === 3
           ? 'Super ! tu as réussi. Rejoins-nous vite pour collecter tes premiers points.'
