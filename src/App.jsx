@@ -10,7 +10,6 @@ import don from './components/don.png';
 import benne from './components/benne.png';
 import './App.css';
 import Footer from './components/Footer';
-import Social from './components/Social';
 import Home from './components/Home';
 import Header from './components/Header';
 import WorkInProgress from './components/WorkInProgress';
@@ -112,7 +111,6 @@ function App() {
             <Route exact path="/home">
               <Header />
               <Home />
-              <Social />
             </Route>
             <Route exact path="/map">
               <CollectMap
