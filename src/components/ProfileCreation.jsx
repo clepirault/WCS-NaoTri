@@ -14,7 +14,10 @@ function ProfileCreation(props) {
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
   const history = useHistory();
-  const [allValue, setAllValue] = useState(true);
+  const [enableCreation, setEnableCreation] = useState(false);
+
+  if (pseudo && birthday && email && avatar && !enableCreation)
+    setEnableCreation(true);
 
   useEffect(() => {
     props.setShowFooter(false);
@@ -48,7 +51,6 @@ function ProfileCreation(props) {
   };
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
-    setAllValue(false);
   };
 
   return (
@@ -141,7 +143,7 @@ function ProfileCreation(props) {
             type="submit"
             id="submit"
             onClick={handleClic}
-            disabled={allValue}
+            disabled={!enableCreation}
           >
             Créer mon compte
           </button>
