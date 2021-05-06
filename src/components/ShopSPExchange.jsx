@@ -3,7 +3,7 @@ import coins from '../images/coins.png';
 /* eslint-disable react/destructuring-assignment */
 const Spoints = parseInt(localStorage.getItem('sp'), 10);
 function Valider() {}
-/* Vérifier quel bouton est activé + générer code barre (check googlefont code barre) et l'afficher quand on val + disparition boutons */
+/* Vérifier quel bouton est activé + générer code barre (check googlefont code barre) et l'afficher quand on val + disparition boutons + un disable des boutons si pas encore le nb de SP suffisants ? */
 
 function ShopSPExchange(props) {
   // eslint-disable-next-line react/prop-types
