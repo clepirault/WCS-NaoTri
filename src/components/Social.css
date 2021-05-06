@@ -1,13 +1,12 @@
 .socialStyle {
   margin: 0;
+  margin-top: 15px;
   padding: 0;
   height: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  bottom: 75px;
-  position: fixed;
   width: 100%;
   background-color: #e6e6e6;
 }
