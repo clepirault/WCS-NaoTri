@@ -31,7 +31,7 @@ function Home() {
             <p>Enseignes</p>
           </div>
         </Link>
-        <Link to="/challenge" style={{ textDecoration: 'none' }}>
+        <Link to="/regles" style={{ textDecoration: 'none' }}>
           <div className="menu-defi">
             <img src={trophyIcon} alt="Challenge" className="challange" />
             <p>Règles du jeu</p>

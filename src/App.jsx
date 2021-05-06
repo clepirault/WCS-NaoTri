@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 import Social from './components/Social';
 import Home from './components/Home';
 import Header from './components/Header';
-import WorkInProgress from './components/WorkInProgress';
+import ReglesDuJeu from './components/ReglesDuJeu';
 import QuizResult from './components/QuizResult';
 import ProfileCreation from './components/ProfileCreation';
 import Slider from './components/Slider';
@@ -106,9 +106,6 @@ function App() {
             <Route exact path="/quizResult">
               <QuizResult setShowFooter={setShowFooter} />
             </Route>
-            <Route exact path="/login">
-              <WorkInProgress />
-            </Route>
             <Route exact path="/home">
               <Header />
               <Home />
@@ -127,9 +124,6 @@ function App() {
                 depositPoint={depositPoint}
               />
             </Route>
-            <Route exact path="/shop">
-              <WorkInProgress />
-            </Route>
             <Route exact path="/profileCreation">
               <ProfileCreation setShowFooter={setShowFooter} />
             </Route>
@@ -137,8 +131,9 @@ function App() {
               <Header titre={username} />
               <UserProfile />
             </Route>
-            <Route exact path="/challenge">
-              <WorkInProgress />
+            <Route exact path="/regles">
+              <Header />
+              <ReglesDuJeu />
             </Route>
             <Route exact path="/tips">
               <Header titre={headerGoodHabits} />
