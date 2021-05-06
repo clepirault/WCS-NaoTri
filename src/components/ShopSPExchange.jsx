@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import './ShopSPExchange.css';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -7,11 +7,10 @@ import bon1 from '../images/bon1.png';
 import bon2 from '../images/bon2.png';
 import bon5 from '../images/bon5.png';
 import bon10 from '../images/bon10.png';
-/* eslint-disable react/destructuring-assignment */
 
 function ShopSPExchange(props) {
-  // eslint-disable-next-line react/prop-types
-  const { name, address, ville } = props.shop;
+  const { shop } = props;
+  const { name, address, ville } = shop;
 
   const Spoints = parseInt(localStorage.getItem('sp'), 10);
 
