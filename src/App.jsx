@@ -82,7 +82,7 @@ function App() {
     lng: 0,
   });
 
-  const [shop, setShop] = useState({ name: '', address: '' });
+  const [shop, setShop] = useState({ name: '', address: '', ville: '' });
 
   return (
     <div className="App">

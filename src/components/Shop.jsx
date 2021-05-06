@@ -14,6 +14,7 @@ import Header from './Header';
 import './Shop.css';
 import blue from '../images/pins/bluePin.png';
 import shadow from '../images/pins/shadow.png';
+import shop from '../images/pins/shopPin.png';
 
 const iAnchor = [0, 37];
 const pAnchor = [10, -44];
@@ -32,25 +33,42 @@ const bluePin = new L.Icon({
   shadowAnchor: sAnchor,
 });
 
+const shopPin = new L.Icon({
+  iconUrl: shop,
+  iconRetinaUrl: shop,
+  iconAnchor: iAnchor,
+  popupAnchor: pAnchor,
+  iconSize: iSize,
+  shadowUrl: shadow,
+  shadowSize: sSize,
+  shadowAnchor: sAnchor,
+});
+
+const srcAvatar = localStorage.getItem('avatar');
+const pseudoUser = localStorage.getItem('pseudo');
+
 const partnerShops = [
   {
     id: 1,
     name: 'Truffaut',
-    address: '258 Route de Vannes, 44700 Orvault',
+    address: '258 Route de Vannes',
+    ville: '44700 Orvault',
     latitude: 47.24879173792753,
     longitude: -1.606460892054728,
   },
   {
     id: 2,
     name: 'Myrtille & Olive',
-    address: '5 place de la Galarne, 44200 Nantes',
+    address: '5 place de la Galarne',
+    ville: '44200 Nantes',
     latitude: 47.20890727765062,
     longitude: -1.5295224136610706,
   },
   {
     id: 3,
     name: 'Chlorophyle',
-    address: '18 rue Ordronneau, 44400 Rezé',
+    address: '18 rue Ordronneau',
+    ville: '44400 Rezé',
     latitude: 47.19764033743909,
     longitude: -1.5828948793060467,
   },
@@ -153,10 +171,11 @@ function Shop(props) {
 
   const history = useHistory();
 
-  const handleSP = (nameShop, addr) => {
+  const handleSP = (nameShop, addr, city) => {
     setShop({
       name: nameShop,
       address: addr,
+      ville: city,
     });
     history.push('/sp_convert');
   };
@@ -207,11 +226,12 @@ function Shop(props) {
             <Marker
               key={partnerShop.id}
               position={[partnerShop.latitude, partnerShop.longitude]}
-              icon={bluePin}
+              icon={shopPin}
             >
               <Popup>
-                <p>{partnerShop.name}</p>
+                <h3>{partnerShop.name}</h3>
                 <p>{partnerShop.address}</p>
+                <p>{partnerShop.ville}</p>
                 <button
                   type="button"
                   onClick={() =>
@@ -226,7 +246,11 @@ function Shop(props) {
                 <button
                   type="button"
                   onClick={() =>
-                    handleSP(partnerShop.name, partnerShop.address)
+                    handleSP(
+                      partnerShop.name,
+                      partnerShop.address,
+                      partnerShop.ville
+                    )
                   }
                 >
                   Echanger SP
@@ -237,7 +261,13 @@ function Shop(props) {
 
           <Marker icon={bluePin} position={center}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              <p style={{ textAlign: 'center' }}>{pseudoUser}</p>
+              <img
+                style={{ borderRadius: '50%' }}
+                className="frog"
+                src={srcAvatar}
+                alt="blue frog"
+              />
             </Popup>
           </Marker>
         </MapContainer>
