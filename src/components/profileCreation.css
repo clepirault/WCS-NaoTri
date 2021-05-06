@@ -1,3 +1,8 @@
+.ProfileCreation {
+  height: 105vh;
+  background-color: #e6e6e6;
+}
+
 .Naotri {
   background-color: #46dc7b;
   color: rgb(102, 95, 95);
@@ -28,26 +33,25 @@
 }
 
 .picture p {
-  border: solid rgb(194, 190, 190);
-  border-radius: 15px;
-  color: #3bb465;
-  background-color: #d2cece;
-  width: 50%;
-  text-align: center;
   margin-top: 15px;
-  background-color: lightgrey;
+  font-size: 19px;
+  margin-left: 5%;
 }
 
 .infos {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
 }
 
-.pseudo {
+.pseudoContainer,
+.birthdayContainer,
+.emailContainer {
+  height: 120px;
+}
+
+.pseudo,
+.birthday {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
@@ -56,9 +60,12 @@
 }
 
 .pseudo input {
-  height: 25px;
+  height: 45px;
   text-align: center;
-  width: 185px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  font-size: 18px;
   border-radius: 10px;
   color: rgb(139, 122, 122);
   outline: none;
@@ -66,26 +73,19 @@
   background-color: white;
 }
 
-.birthday {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  align-items: center;
-  height: 80px;
-}
-
 .birthday p {
   font-size: 19px;
+  margin-left: 5%;
 }
 
 .birthday input {
-  height: 25px;
+  height: 45px;
   text-align: center;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  font-size: 18px;
   color: rgb(139, 122, 122);
-  width: 185px;
   text-align: center;
   border-radius: 10px;
   padding: 1px;
@@ -96,8 +96,6 @@
 
 .email {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
@@ -105,26 +103,27 @@
   height: 80px;
 }
 
-.email p {
+.email p,
+.pseudo p {
   font-size: 19px;
+  margin-left: 5%;
 }
 
 .email input {
-  height: 25px;
+  height: 45px;
   text-align: center;
-  width: 185px;
+  width: 90%;
+  font-size: 18px;
+  margin: auto;
+  display: flex;
   border-radius: 10px;
-  color: rgb(116, 88, 88);
+  color: rgb(163, 145, 145);
   outline: none;
   border: solid rgb(139, 122, 122);
   background-color: white;
 }
 
-.emailContainer,
-.pseudoContainer,
-.birthdayContainer {
-  margin-top: 10px;
-}
+
 
 .submit {
   display: flex;
