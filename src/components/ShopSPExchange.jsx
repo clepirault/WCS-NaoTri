@@ -122,7 +122,7 @@ function ShopSPExchange(props) {
       )}
       {changeNOK && (
         <div className="body">
-          <p>Not enough SP</p>
+          <p>Pas assez de SP</p>
           <button type="button" className="btnSP" onClick={backToChoice}>
             Retour
           </button>
