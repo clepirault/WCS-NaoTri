@@ -8,7 +8,7 @@ import twitter from '../images/twitter.svg';
 function Social() {
   return (
     <div className="socialStyle">
-      <h5 className="socialTitle">Rejoignez-nous !</h5>
+      <h5 className="socialTitle">Rejoignez-nous!</h5>
       <div className="socialIcons">
         <img src={instagram} alt="Instagram Icon" />
         <img src={youtube} alt="Youtube Icon" />

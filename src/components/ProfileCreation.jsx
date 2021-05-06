@@ -14,6 +14,7 @@ function ProfileCreation(props) {
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
   const history = useHistory();
+  const [allValue, setAllValue] = useState(true);
 
   useEffect(() => {
     props.setShowFooter(false);
@@ -47,11 +48,12 @@ function ProfileCreation(props) {
   };
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
+    setAllValue(false);
   };
 
   return (
     <div className="ProfileCreation">
-      <h1 className="Naotri">NAOTRI</h1>
+      <h1 className="Naotri">Créer ton compte</h1>
       <div className="picture">
         <p>Choisis ton avatar</p>
         <div>
@@ -135,7 +137,12 @@ function ProfileCreation(props) {
           </label>
         </form>
         <form className="submit">
-          <button type="submit" id="submit" onClick={handleClic}>
+          <button
+            type="submit"
+            id="submit"
+            onClick={handleClic}
+            disabled={allValue}
+          >
             Créer mon compte
           </button>
         </form>

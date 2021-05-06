@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 70vh;
+  height: auto;
+  margin-top: 30px;
   background-color: #e6e6e6;
 }
 
@@ -17,9 +18,10 @@
 .menu-enseignes,
 .menu-espace,
 .menu-defi,
+.goodhabits,
 .a-propos {
   padding: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   padding-right: 40px;
   padding-left: 40px;
   background-color: #46dc7b;
@@ -45,7 +47,9 @@
 }
 
 .profil,
-.recycle-bin {
+.recycle-bin,
+.stores,
+.habits {
   width: 35px;
   height: 35px;
   filter: invert(100%);
