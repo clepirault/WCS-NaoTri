@@ -1,6 +1,11 @@
+.homePage {
+  height: 99vh;
+  overflow: scroll;
+}
+
 .homeBloc {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -10,7 +15,8 @@
 }
 
 .homeBloc p {
-  font-size: 20px;
+  font-size: 15px;
+  width: 150px;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -21,20 +27,22 @@
 .goodhabits,
 .a-propos {
   padding: 5px;
-  margin-bottom: 30px;
+  margin: 15px;
   padding-right: 40px;
   padding-left: 40px;
   background-color: #46dc7b;
-  border-radius: 10px;
+  border-radius: 50%;
   color: black;
-  width: 55vw;
-  height: 40px;
-  box-shadow:  0 0 10px grey;
+  width: 18vw;
+  height: 140px;
+  box-shadow: 0 0 10px grey;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   animation-name: fade;
+  text-align: center;
   animation-duration: 2s;
   align-items: center;
+  justify-content: center;
 }
 
 @keyframes fade {
@@ -50,7 +58,7 @@
 .recycle-bin,
 .stores,
 .habits {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   filter: invert(100%);
 }
