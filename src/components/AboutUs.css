@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #e6e6e6;
+  margin-bottom: 75px;
 }
 
 .intro{
@@ -27,6 +28,7 @@
 .logowcs{
   height: 30vh;
   border-radius: 50%;
+  margin-bottom: 30px;
 }
 
 .aboutus h3{
