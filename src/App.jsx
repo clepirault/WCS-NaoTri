@@ -12,7 +12,7 @@ import './App.css';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Header from './components/Header';
-import WorkInProgress from './components/WorkInProgress';
+import ReglesDuJeu from './components/ReglesDuJeu';
 import QuizResult from './components/QuizResult';
 import ProfileCreation from './components/ProfileCreation';
 import Slider from './components/Slider';
@@ -86,7 +86,7 @@ function App() {
     lng: 0,
   });
 
-  const [shop, setShop] = useState({ name: '', address: '' });
+  const [shop, setShop] = useState({ name: '', address: '', ville: '' });
 
   return (
     <div className="App">
@@ -110,9 +110,6 @@ function App() {
             </Route>
             <Route exact path="/quizResult">
               <QuizResult setShowFooter={setShowFooter} />
-            </Route>
-            <Route exact path="/login">
-              <WorkInProgress />
             </Route>
             <Route exact path="/home">
               <Header />
@@ -145,8 +142,9 @@ function App() {
               <Header titre={username} />
               <UserProfile />
             </Route>
-            <Route exact path="/challenge">
-              <WorkInProgress />
+            <Route exact path="/regles">
+              <Header />
+              <ReglesDuJeu />
             </Route>
             <Route exact path="/tips">
               <Header titre={headerGoodHabits} />
