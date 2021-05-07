@@ -1,5 +1,5 @@
 .homePage {
-  height: 99vh;
+  height: 80vh;
   overflow: scroll;
 }
 
@@ -15,8 +15,10 @@
 }
 
 .homeBloc p {
-  font-size: 15px;
+  font-size: 12px;
   width: 150px;
+  font-weight: 800;
+  text-transform: uppercase;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -27,14 +29,14 @@
 .goodhabits,
 .a-propos {
   padding: 5px;
-  margin: 15px;
+  margin: 0 25px 30px 25px;
   padding-right: 40px;
   padding-left: 40px;
   background-color: #46dc7b;
   border-radius: 50%;
   color: black;
-  width: 18vw;
-  height: 140px;
+  width: 12vw;
+  height: 120px;
   box-shadow: 0 0 10px grey;
   display: flex;
   flex-direction: column;

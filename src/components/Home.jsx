@@ -7,7 +7,6 @@ import storeIcon from '../images/shopIconfull.svg';
 import trophyIcon from '../images/trophyIcon.svg';
 import userIcon from '../images/profileIconfull.svg';
 import ideaIcon from '../images/ideaIconfull.svg';
-// import recycleBinIcon from '../images/recycleBinIcon.svg';
 import locationIcon from '../images/locationIconfull.svg';
 
 function Home() {
@@ -15,10 +14,16 @@ function Home() {
     <>
       <div className="homePage">
         <div className="homeBloc">
-          <Link to="/profile" style={{ textDecoration: 'none' }}>
-            <div className="menu-espace">
-              <img src={userIcon} alt="Profil" className="profil" />
-              <p>Mon espace</p>
+          <Link to="/regles" style={{ textDecoration: 'none' }}>
+            <div className="menu-defi">
+              <img src={trophyIcon} alt="Challenge" className="challange" />
+              <p>Règles du jeu</p>
+            </div>
+          </Link>
+          <Link to="/tips" style={{ textDecoration: 'none' }}>
+            <div className="goodhabits">
+              <img src={ideaIcon} alt="About" className="habits" />
+              <p>Eco-tips</p>
             </div>
           </Link>
           <Link to="/map" style={{ textDecoration: 'none' }}>
@@ -37,16 +42,10 @@ function Home() {
               <p>Enseignes</p>
             </div>
           </Link>
-          <Link to="/regles" style={{ textDecoration: 'none' }}>
-            <div className="menu-defi">
-              <img src={trophyIcon} alt="Challenge" className="challange" />
-              <p>Règles du jeu</p>
-            </div>
-          </Link>
-          <Link to="/tips" style={{ textDecoration: 'none' }}>
-            <div className="goodhabits">
-              <img src={ideaIcon} alt="About" className="habits" />
-              <p>Eco-tips</p>
+          <Link to="/userProfile" style={{ textDecoration: 'none' }}>
+            <div className="menu-espace">
+              <img src={userIcon} alt="Profil" className="profil" />
+              <p>Mon espace</p>
             </div>
           </Link>
           <Link to="/about" style={{ textDecoration: 'none' }}>
