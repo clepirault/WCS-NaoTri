@@ -1,0 +1,51 @@
+.label-SP {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 45%;
+  height: 20px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px lightgrey;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.body {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnSP {
+  margin-top: 30px;
+  height: 30px;
+  width: 160px;
+  border-radius: 30px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #46dc7b;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.msgAlert {
+  color: red;
+  font-style: italic;
+  text-decoration: underline;
+  padding: 20px;
+  text-justify: distribute;
+}

@@ -102,7 +102,7 @@ function ProfileCreation(props) {
       <div className="infos">
         <form className="pseudoContainer">
           <label htmlFor="pseudo" className="pseudo">
-            <p>Pseudo:</p>
+            <p>Pseudo</p>
             <input
               type="text"
               name="pseudo"
@@ -115,7 +115,7 @@ function ProfileCreation(props) {
         </form>
         <form className="birthdayContainer">
           <label htmlFor="birthday" className="birthday">
-            <p>Date de naissance:</p>
+            <p>Date de naissance</p>
             <input
               type="date"
               name="birthday"
@@ -127,7 +127,7 @@ function ProfileCreation(props) {
         </form>
         <form className="emailContainer">
           <label htmlFor="email" className="email">
-            <p>Email :</p>
+            <p>Email</p>
             <input
               type="email"
               name="email"

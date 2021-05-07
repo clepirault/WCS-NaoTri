@@ -149,12 +149,14 @@ li {
   list-style-type: none;
 }
 
-.input {
+.input-postal-code {
   background-color: #eee;
   height: 30px;
   width: 140px;
   border-radius: 5px;
   outline: none;
+  margin: auto;
+  color: black;
 }
 
 .btn-form {

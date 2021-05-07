@@ -7,7 +7,6 @@ import storeIcon from '../images/shopIconfull.svg';
 import trophyIcon from '../images/trophyIcon.svg';
 import userIcon from '../images/profileIconfull.svg';
 import ideaIcon from '../images/ideaIconfull.svg';
-// import recycleBinIcon from '../images/recycleBinIcon.svg';
 import locationIcon from '../images/locationIconfull.svg';
 
 function Home() {
@@ -15,7 +14,7 @@ function Home() {
     <>
       <div className="homePage">
         <div className="homeBloc">
-          <Link to="/challenge" style={{ textDecoration: 'none' }}>
+          <Link to="/regles" style={{ textDecoration: 'none' }}>
             <div className="menu-defi">
               <img src={trophyIcon} alt="Challenge" className="challange" />
               <p>Règles du jeu</p>

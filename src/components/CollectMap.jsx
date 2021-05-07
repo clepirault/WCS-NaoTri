@@ -418,7 +418,7 @@ const CollectMap = ({ setUserLoc, setDepositPoint }) => {
             </ul>
             <label className="label" htmlFor="cp">
               <input
-                className="input"
+                className="input-postal-code"
                 placeholder="Code Postal.."
                 type="text"
                 name="cp"
