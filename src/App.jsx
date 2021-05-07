@@ -19,6 +19,8 @@ import Slider from './components/Slider';
 import Fullscreen from './components/Fullscreen';
 import CollectValidation from './components/CollectValidation';
 import UserProfile from './components/UserProfile';
+import Shop from './components/Shop';
+import ShopSPExchange from './components/ShopSPExchange';
 import GoodHabits from './components/good-habits';
 import AboutUs from './components/AboutUs';
 
@@ -63,6 +65,7 @@ const quizQuestions = [
 ];
 
 const headerDepot = `Dépôt`;
+const headerSP = `Conversion enseigne`;
 
 const headerGoodHabits = `Le saviez-vous ?`;
 
@@ -82,6 +85,9 @@ function App() {
     lat: 0,
     lng: 0,
   });
+
+  const [shop, setShop] = useState({ name: '', address: '', ville: '' });
+
   return (
     <div className="App">
       <Router>
@@ -121,6 +127,13 @@ function App() {
                 userLoc={userLoc}
                 depositPoint={depositPoint}
               />
+            </Route>
+            <Route exact path="/shop">
+              <Shop setShop={setShop} />
+            </Route>
+            <Route exact path="/sp_convert">
+              <Header titre={headerSP} />
+              <ShopSPExchange shop={shop} />
             </Route>
             <Route exact path="/profileCreation">
               <ProfileCreation setShowFooter={setShowFooter} />
