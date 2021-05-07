@@ -21,7 +21,7 @@
   border: solid rgb(160, 154, 154);
 }
 
-.picture img{
+.picture img {
   margin: 10px;
 }
 
@@ -130,7 +130,7 @@
   justify-content: center;
 }
 
-.submit button{
+.submit button {
   background-color: #46dc7b;
   border: solid rgb(139, 134, 134);
 }
