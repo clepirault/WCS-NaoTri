@@ -1,5 +1,5 @@
 .ProfileCreation {
-  height: 105vh;
+  height: 100vh;
   background-color: #e6e6e6;
 }
 
@@ -75,7 +75,7 @@
 
 .birthday p {
   font-size: 19px;
-  margin-left: 5%;
+  margin: 10px 5%;
 }
 
 .birthday input {
@@ -106,7 +106,7 @@
 .email p,
 .pseudo p {
   font-size: 19px;
-  margin-left: 5%;
+  margin: 10px 5%;
 }
 
 .email input {
@@ -127,7 +127,7 @@
 
 .submit {
   display: flex;
-  margin-top: 40px;
+  margin-top: 20px;
   justify-content: center;
 }
 
