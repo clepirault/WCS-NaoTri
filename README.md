@@ -1,6 +1,6 @@
 # Naotri
 
-<p>🌱 This is a project to encourage people to recycling in a fun way</p>
+<p>🌱 This is a app (mobile device only) that encourage people to recycling in a fun way</p>
 <p>🎓 Wild Code School project</p>
 
 ## Goals 🎯 :
