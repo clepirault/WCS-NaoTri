@@ -4,7 +4,7 @@
 <p>🎓 Wild Code School project</p>
 
 ## Goals 🎯 :
-* Create an app in React & with integrating the Nantes Métropole API
+* Create an app in React & with Nantes Métropole API integration
 * Apply Git workflow & SCRUM methodology
 
 ## Stack 💎 :
