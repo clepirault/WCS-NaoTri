@@ -5,7 +5,7 @@
 
 ## Goals 🎯 :
 * Create an app in React & with integrating the Nantes Métropole API
-* Apply Git Workflow & SCRUM methodology
+* Apply Git workflow & SCRUM methodology
 
 ## Stack 💎 :
 **React**
